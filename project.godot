@@ -17,9 +17,11 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
+window/size/viewport_width=384
+window/size/viewport_height=216
+window/size/mode=4
 window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 
 [input]
 
@@ -44,6 +46,7 @@ jump={
 2d_physics/layer_1="player"
 2d_physics/layer_2="wall"
 2d_physics/layer_3="bubble"
+2d_physics/layer_4="water"
 
 [rendering]
 

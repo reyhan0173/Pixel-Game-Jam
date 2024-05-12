@@ -34,7 +34,6 @@ func jump() -> bool:
 
 func fall() -> bool:
 	if !player.is_on_floor():
-		print("HELLO?")
 		player.transition_to(State.Name.STILL_AIR)
 		return true
 	return false

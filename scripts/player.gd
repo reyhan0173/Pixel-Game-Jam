@@ -46,3 +46,9 @@ func transition_to(state: State.Name) -> void:
 
 func set_facing_right(value: bool) -> void:
 	$Sprite2D.flip_h = !value
+
+
+func is_above_water() -> bool:
+	if $RayCast2D.get_collider() is Water:
+		return true
+	return false
