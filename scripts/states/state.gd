@@ -5,7 +5,6 @@ enum Player {
 	STILL_GROUND, MOVE_GROUND, STILL_AIR, MOVE_AIR,
 }
 
-
 var player: Player
 
 

@@ -1,10 +1,12 @@
 [gd_scene load_steps=7 format=3 uid="uid://cyb7v268j5o3u"]
 
+
 [ext_resource type="Script" path="res://scripts/Roombot.gd" id="1_52k15"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_wnkjl"]
 [ext_resource type="Script" path="res://scripts/patrol.gd" id="3_xpkio"]
 [ext_resource type="Script" path="res://scenes/alert.gd" id="4_f28ks"]
 [ext_resource type="Texture2D" path="res://assets/enemies/temproombot.png" id="4_fse7k"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exg1j"]
 size = Vector2(20, 12)
