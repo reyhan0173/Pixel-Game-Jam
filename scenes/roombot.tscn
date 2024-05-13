@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://cyb7v268j5o3u"]
+
+[ext_resource type="Script" path="res://scripts/Roombot.gd" id="1_52k15"]
+[ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_wnkjl"]
+[ext_resource type="Script" path="res://scripts/patrol.gd" id="3_xpkio"]
+[ext_resource type="Script" path="res://scenes/alert.gd" id="4_f28ks"]
+[ext_resource type="Texture2D" path="res://assets/enemies/temproombot.png" id="4_fse7k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exg1j"]
+size = Vector2(20, 12)
+
+[node name="Roombot" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_52k15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_exg1j")
+
+[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("2_wnkjl")
+starting_state = NodePath("patrol")
+
+[node name="patrol" type="Node" parent="state_machine" node_paths=PackedStringArray("alert_state")]
+script = ExtResource("3_xpkio")
+alert_state = NodePath("../alert")
+
+[node name="alert" type="Node" parent="state_machine" node_paths=PackedStringArray("patrol_state")]
+script = ExtResource("4_f28ks")
+patrol_state = NodePath("../patrol")
+
+[node name="Temproombot" type="Sprite2D" parent="."]
+position = Vector2(9.53674e-07, 0)
+scale = Vector2(0.0417537, 0.0397554)
+texture = ExtResource("4_fse7k")
+region_enabled = true
+region_rect = Rect2(257, 57, 479, 327)
+
+[node name="player_detection" type="RayCast2D" parent="."]
+rotation = -1.5708
+target_position = Vector2(-2.84124e-06, 65)
+
+[node name="l_collision_detector" type="RayCast2D" parent="."]
+position = Vector2(-10, 6)
+target_position = Vector2(0, 6)
+
+[node name="r_collision_detector" type="RayCast2D" parent="."]
+position = Vector2(10, 6)
+target_position = Vector2(0, 6)
