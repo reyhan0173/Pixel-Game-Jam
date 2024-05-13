@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ceny4pga54mbm"]
+[gd_scene load_steps=9 format=3 uid="uid://ceny4pga54mbm"]
 
 [ext_resource type="PackedScene" uid="uid://bhpqwbnbvkb2g" path="res://scenes/player.tscn" id="1_gy1s4"]
 [ext_resource type="Texture2D" uid="uid://dvt4vaqos4xp" path="res://assets/tiles/ground.png" id="1_js4ev"]
 [ext_resource type="PackedScene" uid="uid://pxs4xp2j5q1k" path="res://scenes/bubble_emitter.tscn" id="2_miupi"]
+[ext_resource type="PackedScene" uid="uid://dncncsaec6j0q" path="res://scenes/roombot.tscn" id="4_4rp6j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pcjm3"]
 texture = ExtResource("1_js4ev")
@@ -24,7 +25,7 @@ normal = Vector2(0, 1)
 [node name="Playground" type="TileMap"]
 tile_set = SubResource("TileSet_wfwn5")
 format = 2
-layer_0/tile_data = PackedInt32Array(589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 458760, 1, 0, 393226, 1, 0, 327692, 1, 0, 720909, 1, 0, 720908, 1, 0, 786444, 1, 0, 786445, 1, 0, 524304, 1, 0, 589840, 1, 0, 589841, 1, 0, 524305, 1, 0, 327700, 1, 0, 393236, 1, 0, 393237, 1, 0, 327701, 1, 0)
+layer_0/tile_data = PackedInt32Array(589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 458760, 1, 0, 393226, 1, 0, 327692, 1, 0, 720909, 1, 0, 720908, 1, 0, 786444, 1, 0, 786445, 1, 0, 524304, 1, 0, 589840, 1, 0, 589841, 1, 0, 524305, 1, 0, 327700, 1, 0, 393236, 1, 0, 393237, 1, 0, 327701, 1, 0, 65551, 1, 0, 65552, 1, 0, 65553, 1, 0, 65554, 1, 0, 65555, 1, 0, 65556, 1, 0, 65557, 1, 0, 65558, 1, 0, 131094, 1, 0, 196630, 1, 0, 262166, 1, 0, 262165, 1, 0, 262164, 1, 0, 262163, 1, 0, 262162, 1, 0, 262161, 1, 0, 262160, 1, 0, 262159, 1, 0, 262158, 1, 0, 196622, 1, 0, 131086, 1, 0, 65550, 1, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_gy1s4")]
 position = Vector2(35, 115)
@@ -44,4 +45,7 @@ position = Vector2(122, 308)
 shape = SubResource("WorldBoundaryShape2D_24h4o")
 
 [node name="BubbleEmitter" parent="." instance=ExtResource("2_miupi")]
-position = Vector2(190, 273)
+position = Vector2(186, 277)
+
+[node name="Roombot" parent="." instance=ExtResource("4_4rp6j")]
+position = Vector2(259, 48)
