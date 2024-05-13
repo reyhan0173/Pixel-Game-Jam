@@ -26,3 +26,11 @@ func on_transition() -> void:
 	set_process(true)
 	set_physics_process(true)
 	set_process_input(true)
+
+
+func jump() -> bool:
+	if Input.is_action_just_pressed("jump"):
+		player.velocity.y = -player.stats.jump_strength
+		player.transition_to(State.Player.STILL_AIR)
+		return true
+	return false

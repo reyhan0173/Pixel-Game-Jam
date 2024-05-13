@@ -19,10 +19,6 @@ func _ready() -> void:
 	transition_to(State.Player.STILL_GROUND)
 
 
-#func _process(delta: float) -> void:
-	#print(current_state)
-
-
 ## Transitions to another [class State].
 func transition_to(state: State.Player) -> void:
 	if current_state:
@@ -35,3 +31,15 @@ func transition_to(state: State.Player) -> void:
 
 func set_facing_right(value: bool) -> void:
 	$Sprite2D.flip_h = !value
+
+
+
+func set_coyote_jump_enabled(value: bool) -> void:
+	if value and !is_coyote_jump_enabled():
+		$CoyoteJumpTimer.start()
+	elif !value:
+		$CoyoteJumpTimer.stop()
+
+
+func is_coyote_jump_enabled() -> bool:
+	return !$CoyoteJumpTimer.is_stopped()

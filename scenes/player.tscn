@@ -25,6 +25,10 @@ texture = ExtResource("2_8okbr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="CoyoteJumpTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
 [node name="StillGroundState" type="Node" parent="."]
 script = ExtResource("3_comfm")
 

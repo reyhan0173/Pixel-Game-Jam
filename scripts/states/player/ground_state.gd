@@ -26,14 +26,6 @@ func stop() -> bool:
 	return false
 
 
-func jump() -> bool:
-	if Input.is_action_pressed("jump"):
-		player.velocity.y = -player.stats.jump_strength
-		player.transition_to(State.Player.STILL_AIR)
-		return true
-	return false
-
-
 func fall() -> bool:
 	if !player.is_on_floor():
 		player.transition_to(State.Player.STILL_AIR)

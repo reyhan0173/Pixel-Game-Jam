@@ -6,6 +6,8 @@ func _physics_process(delta: float) -> void:
 	player.velocity += player.acceleration * delta
 	player.velocity.x = clamp(player.velocity.x, -player.stats.air_max_speed, player.stats.air_max_speed)
 	player.move_and_slide()
+	if player.is_coyote_jump_enabled() and jump():
+		return
 	if land():
 		return
 	if move_air():
