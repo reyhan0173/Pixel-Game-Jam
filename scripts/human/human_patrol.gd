@@ -1,8 +1,8 @@
 extends enemy_state
 
-@export var alert_state: enemy_state
+#@export var alert_state: enemy_state
 
-var speed: float = 50
+var speed: float = 30
 
 var direction: int = 1
 
@@ -15,20 +15,15 @@ func exit() -> void:
 	pass
 
 func process_frame(delta: float) -> enemy_state:
-	if parent.player_detection.is_colliding():
-		alert_state.direction = direction
-		print("hellow world")
-		return alert_state
+	#add player detection -> alert state
 	return null
 
 func process_physics(delta: float) -> enemy_state:
-	
+
 	if parent.is_on_wall():
 		direction *= -1
 		parent.scale.x *= -1
 		
 	parent.velocity = Vector2(speed * direction, gravity * delta)
 	parent.move_and_slide()
-	
-	
 	return null

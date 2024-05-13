@@ -1,16 +1,13 @@
-class_name Enemy
+class_name Human
 extends CharacterBody2D
+
+@onready
+var sprite: = $Temphuman
 
 @onready
 var state_machine = $state_machine
 @onready
 var player_detection: = $player_detection
-@onready
-var ledgeCheckRight: = $LedgeCheckRight
-@onready
-var ledgeCheckLeft: = $LedgeCheckLeft
-@onready
-var sprite: = $Temproombot
 
 
 func _ready() -> void:
@@ -23,5 +20,3 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
-
-

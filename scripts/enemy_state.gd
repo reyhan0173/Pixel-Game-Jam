@@ -9,7 +9,8 @@ var move_speed: float = 300
 # Add consistent gravity for this
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var parent: Enemy
+# Instead of assigning Enemy type which changes
+var parent: CharacterBody2D
 
 func enter() -> void:
 	parent.animations.play(animation_name)

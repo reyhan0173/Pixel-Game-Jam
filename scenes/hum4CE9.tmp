@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://preabc7uyad4"]
+
+[ext_resource type="Script" path="res://scenes/human.gd" id="1_0yv0g"]
+[ext_resource type="Texture2D" uid="uid://dghkxoyrehd3q" path="res://assets/enemies/temphuman.png" id="1_eyt2q"]
+[ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_kmx80"]
+[ext_resource type="Script" path="res://scripts/patrol.gd" id="3_horwk"]
+[ext_resource type="Script" path="res://scripts/alert.gd" id="4_wgsm0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_noequ"]
+size = Vector2(26, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7emb7"]
+size = Vector2(46, 38)
+
+[node name="human" type="CharacterBody2D"]
+script = ExtResource("1_0yv0g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_noequ")
+
+[node name="Temphuman" type="Sprite2D" parent="."]
+scale = Vector2(0.0978648, 0.0898618)
+texture = ExtResource("1_eyt2q")
+
+[node name="player_detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detection"]
+position = Vector2(37, 0)
+shape = SubResource("RectangleShape2D_7emb7")
+
+[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("2_kmx80")
+starting_state = NodePath("")
+
+[node name="patrol" type="Node" parent="state_machine" node_paths=PackedStringArray("alert_state")]
+script = ExtResource("3_horwk")
+alert_state = NodePath("")
+
+[node name="alert" type="Node" parent="state_machine" node_paths=PackedStringArray("patrol_state")]
+script = ExtResource("4_wgsm0")
+patrol_state = NodePath("")

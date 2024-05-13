@@ -7,7 +7,7 @@ var current_state: enemy_state
 
 # Initialize the state machine by giving each child state a reference to the
 # parent object it belongs to and enter the default starting_state.
-func init(parent: Enemy) -> void:
+func init(parent: CharacterBody2D) -> void:
 	for child in get_children():
 		child.parent = parent
 
