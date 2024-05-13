@@ -1,10 +1,14 @@
-[gd_resource type="Resource" script_class="PlayerConfig" load_steps=2 format=3 uid="uid://bbshhg344hqvw"]
+[gd_resource type="Resource" script_class="PlayerConfig" load_steps=2 format=3 uid="uid://ytowbcl6whle"]
 
 [ext_resource type="Script" path="res://scripts/player_config.gd" id="1_nqqdv"]
 
 [resource]
 script = ExtResource("1_nqqdv")
-ground_speed = 58
+ground_max_speed = 58
+ground_acceleration = 300
+air_max_speed = 58
+air_acceleration = 300
 jump_strength = 130
 gravity_strength = 250
-air_speed = 58
+friction_strength = 200
+air_resistance_strength = 200
