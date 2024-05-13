@@ -1,46 +1,42 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhpqwbnbvkb2g"]
+[gd_scene load_steps=9 format=3 uid="uid://bhpqwbnbvkb2g"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_hx8jc"]
+[ext_resource type="Resource" uid="uid://bbshhg344hqvw" path="res://player_config.tres" id="2_0vbg1"]
 [ext_resource type="Texture2D" uid="uid://bi7aa74jr4tgt" path="res://assets/player/MC.png" id="2_8okbr"]
-[ext_resource type="Script" path="res://scripts/states/still_ground_state.gd" id="2_nuvjo"]
-[ext_resource type="Script" path="res://scripts/states/move_ground_state.gd" id="4_atfho"]
-[ext_resource type="Script" path="res://scripts/states/still_air_state.gd" id="5_hwnqa"]
-[ext_resource type="Script" path="res://scripts/states/move_air_state.gd" id="6_53mr4"]
+[ext_resource type="Script" path="res://scripts/states/player/still_ground_state.gd" id="3_comfm"]
+[ext_resource type="Script" path="res://scripts/states/player/move_ground_state.gd" id="4_atfho"]
+[ext_resource type="Script" path="res://scripts/states/player/still_air_state.gd" id="5_g32xb"]
+[ext_resource type="Script" path="res://scripts/states/player/move_air_state.gd" id="6_53mr4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dysfe"]
-size = Vector2(6, 16)
+size = Vector2(6, 13)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 7
 script = ExtResource("1_hx8jc")
-ground_speed = 50
-jump_strength = 80
-gravity_strength = 100
-air_speed = 50
-bubble_push_force = null
+stats = ExtResource("2_0vbg1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_dysfe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_8okbr")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, 64)
-collision_mask = 10
-collide_with_areas = true
-collide_with_bodies = false
-
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="CoyoteJumpTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
 [node name="StillGroundState" type="Node" parent="."]
-script = ExtResource("2_nuvjo")
+script = ExtResource("3_comfm")
 
 [node name="MoveGroundState" type="Node" parent="."]
 script = ExtResource("4_atfho")
 
 [node name="StillAirState" type="Node" parent="."]
-script = ExtResource("5_hwnqa")
+script = ExtResource("5_g32xb")
 
 [node name="MoveAirState" type="Node" parent="."]
 script = ExtResource("6_53mr4")

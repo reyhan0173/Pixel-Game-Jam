@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlayerConfig" load_steps=2 format=3 uid="uid://bbshhg344hqvw"]
+
+[ext_resource type="Script" path="res://scripts/player_config.gd" id="1_nqqdv"]
+
+[resource]
+script = ExtResource("1_nqqdv")
+ground_speed = 58
+jump_strength = 130
+gravity_strength = 250
+air_speed = 58

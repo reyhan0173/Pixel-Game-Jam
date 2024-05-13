@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 [gd_scene load_steps=9 format=3 uid="uid://ceny4pga54mbm"]
 
 [ext_resource type="PackedScene" uid="uid://bhpqwbnbvkb2g" path="res://scenes/player.tscn" id="1_gy1s4"]
 [ext_resource type="Texture2D" uid="uid://dvt4vaqos4xp" path="res://assets/tiles/ground.png" id="1_js4ev"]
 [ext_resource type="PackedScene" uid="uid://pxs4xp2j5q1k" path="res://scenes/bubble_emitter.tscn" id="2_miupi"]
 [ext_resource type="PackedScene" uid="uid://dncncsaec6j0q" path="res://scenes/roombot.tscn" id="4_4rp6j"]
+=======
+[gd_scene load_steps=7 format=3 uid="uid://ceny4pga54mbm"]
+
+[ext_resource type="PackedScene" uid="uid://bhpqwbnbvkb2g" path="res://scenes/player.tscn" id="1_gy1s4"]
+[ext_resource type="Texture2D" uid="uid://dvt4vaqos4xp" path="res://assets/tiles/ground.png" id="1_js4ev"]
+>>>>>>> origin/main
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pcjm3"]
 texture = ExtResource("1_js4ev")
@@ -25,12 +32,14 @@ normal = Vector2(0, 1)
 [node name="Playground" type="TileMap"]
 tile_set = SubResource("TileSet_wfwn5")
 format = 2
+<<<<<<< HEAD
 layer_0/tile_data = PackedInt32Array(589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 458760, 1, 0, 393226, 1, 0, 327692, 1, 0, 720909, 1, 0, 720908, 1, 0, 786444, 1, 0, 786445, 1, 0, 524304, 1, 0, 589840, 1, 0, 589841, 1, 0, 524305, 1, 0, 327700, 1, 0, 393236, 1, 0, 393237, 1, 0, 327701, 1, 0, 65551, 1, 0, 65552, 1, 0, 65553, 1, 0, 65554, 1, 0, 65555, 1, 0, 65556, 1, 0, 65557, 1, 0, 65558, 1, 0, 131094, 1, 0, 196630, 1, 0, 262166, 1, 0, 262165, 1, 0, 262164, 1, 0, 262163, 1, 0, 262162, 1, 0, 262161, 1, 0, 262160, 1, 0, 262159, 1, 0, 262158, 1, 0, 196622, 1, 0, 131086, 1, 0, 65550, 1, 0)
+=======
+layer_0/tile_data = PackedInt32Array(589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 458760, 1, 0, 327691, 1, 0, 655357, 1, 0, 720893, 1, 0, 655356, 1, 0, 720892, 1, 0, 655355, 1, 0, 720891, 1, 0, 786430, 1, 0, 786431, 1, 0, 720896, 1, 0, 720897, 1, 0, 786429, 1, 0, 393229, 1, 0, 524304, 1, 0, 589845, 1, 0, 589838, 1, 0)
+>>>>>>> origin/main
 
 [node name="Player" parent="." instance=ExtResource("1_gy1s4")]
 position = Vector2(35, 115)
-jump_strength = 120
-gravity_strength = 200
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(112, 42)
@@ -39,13 +48,16 @@ position = Vector2(112, 42)
 shape = SubResource("WorldBoundaryShape2D_byno8")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(122, 308)
+position = Vector2(129, 176)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 shape = SubResource("WorldBoundaryShape2D_24h4o")
+<<<<<<< HEAD
 
 [node name="BubbleEmitter" parent="." instance=ExtResource("2_miupi")]
 position = Vector2(186, 277)
 
 [node name="Roombot" parent="." instance=ExtResource("4_4rp6j")]
 position = Vector2(259, 48)
+=======
+>>>>>>> origin/main
