@@ -11,12 +11,14 @@ func land() -> bool:
 func move_air() -> bool:
 	if Input.is_action_pressed("move_left"):
 		player.acceleration.x = -player.stats.air_acceleration
-		player.transition_to(State.Player.MOVE_AIR)
+		if !(player.current_state is MoveAirState):
+			player.transition_to(State.Player.MOVE_AIR)
 		player.set_facing_right(false)
 		return true
 	if Input.is_action_pressed("move_right"):
 		player.acceleration.x = player.stats.air_acceleration
-		player.transition_to(State.Player.MOVE_AIR)
+		if !(player.current_state is MoveAirState):
+			player.transition_to(State.Player.MOVE_AIR)
 		player.set_facing_right(true)
 		return true
 	return false
