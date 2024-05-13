@@ -1,7 +1,7 @@
 class_name State extends Node
 
 
-enum Name {
+enum Player {
 	STILL_GROUND, MOVE_GROUND, STILL_AIR, MOVE_AIR,
 }
 
@@ -17,8 +17,7 @@ func _ready() -> void:
 
 
 func apply_gravity(delta: float) -> void:
-	player.velocity.y += player.gravity_strength * delta
-	player.move_and_slide()
+	player.velocity.y += player.stats.gravity_strength * delta
 
 
 ## Called when the player transitions to this state.
