@@ -4,11 +4,10 @@ extends enemy_state
 
 var speed: float = 100
 
-var direction: int = 1
+var direction: int
 
 func enter() -> void:
 	#parent.animations.play(animation_name)
-	
 	# dont have to set character velocity
 	parent.velocity = Vector2(speed * direction, 0)
 

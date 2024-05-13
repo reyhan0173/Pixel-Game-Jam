@@ -16,6 +16,7 @@ func exit() -> void:
 
 func process_frame(delta: float) -> enemy_state:
 	if parent.player_detection.is_colliding():
+		alert_state.direction = direction
 		print("hellow world")
 		return alert_state
 	return null
