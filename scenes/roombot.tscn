@@ -50,7 +50,6 @@ collision_mask = 255
 script = ExtResource("6_oxqi2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_jmr6f")
 
 [connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]
