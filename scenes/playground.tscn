@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ceny4pga54mbm"]
+[gd_scene load_steps=9 format=3 uid="uid://ceny4pga54mbm"]
 
 [ext_resource type="PackedScene" uid="uid://bhpqwbnbvkb2g" path="res://scenes/player.tscn" id="1_gy1s4"]
 [ext_resource type="Texture2D" uid="uid://dvt4vaqos4xp" path="res://assets/tiles/ground.png" id="1_js4ev"]
 [ext_resource type="PackedScene" uid="uid://cyb7v268j5o3u" path="res://scenes/roombot.tscn" id="3_72ft2"]
+[ext_resource type="PackedScene" uid="uid://ceotskjind3if" path="res://scenes/water_tank.tscn" id="4_a1bop"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pcjm3"]
 texture = ExtResource("1_js4ev")
@@ -43,3 +44,6 @@ shape = SubResource("WorldBoundaryShape2D_24h4o")
 
 [node name="Roombot" parent="." instance=ExtResource("3_72ft2")]
 position = Vector2(68, 134)
+
+[node name="WaterTank" parent="." instance=ExtResource("4_a1bop")]
+position = Vector2(-19, 126)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhpqwbnbvkb2g"]
+[gd_scene load_steps=10 format=3 uid="uid://bhpqwbnbvkb2g"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_hx8jc"]
 [ext_resource type="Resource" uid="uid://ytowbcl6whle" path="res://player_config.tres" id="2_0vbg1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/states/player/move_ground_state.gd" id="4_atfho"]
 [ext_resource type="Script" path="res://scripts/states/player/still_air_state.gd" id="5_g32xb"]
 [ext_resource type="Script" path="res://scripts/states/player/move_air_state.gd" id="6_53mr4"]
+[ext_resource type="Script" path="res://scripts/water_meter.gd" id="8_s04pl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dysfe"]
 size = Vector2(6, 13)
@@ -52,3 +53,4 @@ offset_bottom = 30.0
 max_value = 10.0
 step = 1.0
 show_percentage = false
+script = ExtResource("8_s04pl")

@@ -8,6 +8,7 @@ signal interact_pressed
 @export var stats: PlayerConfig
 var current_state: State
 var acceleration: Vector2
+@onready var water_meter := %WaterMeter
 
 
 ## Maps [enum State.Player] to [class State] nodes found in Player's children.
@@ -52,23 +53,3 @@ func set_coyote_jump_enabled(value: bool) -> void:
 
 func is_coyote_jump_enabled() -> bool:
 	return !$CoyoteJumpTimer.is_stopped()
-
-
-## Returns the amount of water in the meter.
-func get_water_level() -> int:
-	return %WaterMeter.value
-
-
-## Returns the amount of empty space in the water meter.
-func get_empty_water_level() -> int:
-	return %WaterMeter.max_value - %WaterMeter.value
-
-
-## Fill the water level by [param amount].
-func fill_water(amount: int) -> void:
-	%WaterMeter.value += amount
-
-
-## Remove the water level by [param amount].
-func remove_water(amount: int) -> void:
-	%WaterMeter.value -= amount

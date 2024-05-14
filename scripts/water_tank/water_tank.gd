@@ -45,5 +45,5 @@ func _on_body_exited(body: Node2D) -> void:
 
 
 func _on_player_interact_pressed(player: Player) -> void:
-	var amount := remove_water(player.get_empty_water_level())
-	player.fill_water(amount)
+	var amount := remove_water(player.water_meter.get_empty_water_level())
+	player.water_meter.fill_water(amount)
