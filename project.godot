@@ -17,7 +17,10 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/size/viewport_width=384
+window/size/viewport_height=216
+window/size/mode=4
+window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
 [input]
@@ -45,6 +48,7 @@ jump={
 2d_physics/layer_3="bubble"
 2d_physics/layer_4="water"
 2d_physics/layer_5="roombot"
+2d_physics/layer_6="Human"
 
 [rendering]
 

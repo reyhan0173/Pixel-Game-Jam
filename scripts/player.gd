@@ -43,3 +43,6 @@ func set_coyote_jump_enabled(value: bool) -> void:
 
 func is_coyote_jump_enabled() -> bool:
 	return !$CoyoteJumpTimer.is_stopped()
+
+func player_die() -> void:
+	queue_free()
