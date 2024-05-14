@@ -1,13 +1,13 @@
-class_name alert extends EnemyState
+class_name Patrol extends EnemyState
 
-@export var patrol_state: EnemyState
+#@export var alert_state: enemy_state
+@export var speed: float = 30
 
-var speed: float = 100
-var direction: int
+var direction: int = 1
+
 
 func enter() -> void:
 	#parent.animations.play(animation_name)
-	# dont have to set character velocity
 	parent.velocity = Vector2(speed * direction, 0)
 
 
@@ -17,12 +17,14 @@ func exit() -> void:
 
 
 func process_frame(delta: float) -> EnemyState:
-	if parent.is_on_wall():
-		return patrol_state
+	#add player detection -> alert state
 	return null
 
 
 func process_physics(delta: float) -> EnemyState:
+	if parent.is_on_wall():
+		direction *= -1
+		parent.scale.x *= -1
 	parent.velocity = Vector2(speed * direction, gravity * delta)
 	parent.move_and_slide()
 	return null
