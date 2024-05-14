@@ -1,4 +1,4 @@
-class_name alert extends EnemyState
+class_name Alert extends EnemyState
 
 @export var patrol_state: EnemyState
 
