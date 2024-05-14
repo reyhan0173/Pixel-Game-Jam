@@ -1,9 +1,14 @@
 class_name Player extends CharacterBody2D
 
 
+## Emitted when the player presses the interact button.
+signal interact_pressed
+
+
 @export var stats: PlayerConfig
 var current_state: State
 var acceleration: Vector2
+@onready var water_meter := %WaterMeter
 
 
 ## Maps [enum State.Player] to [class State] nodes found in Player's children.
@@ -17,6 +22,11 @@ var acceleration: Vector2
 
 func _ready() -> void:
 	transition_to(State.Player.STILL_GROUND)
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		interact_pressed.emit()
 
 
 ## Transitions to another [class State].
@@ -33,7 +43,7 @@ func set_facing_right(value: bool) -> void:
 	$Sprite2D.flip_h = !value
 
 
-
+## Allows the player to perform a coyote jump if they cannot already.
 func set_coyote_jump_enabled(value: bool) -> void:
 	if value and !is_coyote_jump_enabled():
 		$CoyoteJumpTimer.start()
