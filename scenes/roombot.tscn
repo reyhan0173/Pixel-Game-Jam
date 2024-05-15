@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/roombot/bot_patrol.gd" id="4_dgrvh"]
 [ext_resource type="Script" path="res://scripts/roombot/alert.gd" id="5_ktmno"]
 [ext_resource type="Script" path="res://scenes/Hitbox.gd" id="6_oxqi2"]
-[ext_resource type="Texture2D" uid="uid://e0sycawpjw56" path="res://assets/light32.png" id="7_sk77l"]
+[ext_resource type="Texture2D" path="res://assets/light32.png" id="7_sk77l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exg1j"]
 size = Vector2(13, 4)
