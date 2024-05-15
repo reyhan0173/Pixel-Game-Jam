@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://cyb7v268j5o3u"]
 
-[ext_resource type="Script" path="res://scripts/enemies/roombot/Roombot.gd" id="1_mx308"]
+[ext_resource type="Script" path="res://scripts/roombot/Roombot.gd" id="1_a1ugr"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_wnkjl"]
-[ext_resource type="Script" path="res://scripts/enemies/roombot/patrol_bot.gd" id="4_1usu2"]
+[ext_resource type="Script" path="res://scripts/roombot/bot_patrol.gd" id="4_dgrvh"]
 [ext_resource type="Texture2D" uid="uid://17eo3f2kmqbv" path="res://assets/enemies/temproombot.png" id="4_fse7k"]
-[ext_resource type="Script" path="res://scripts/enemies/roombot/alert.gd" id="5_edbxi"]
+[ext_resource type="Script" path="res://scripts/roombot/alert.gd" id="5_ktmno"]
 [ext_resource type="Script" path="res://scenes/Hitbox.gd" id="6_oxqi2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exg1j"]
@@ -16,7 +16,7 @@ size = Vector2(17, 8)
 [node name="Roombot" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 2
-script = ExtResource("1_mx308")
+script = ExtResource("1_a1ugr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_exg1j")
@@ -37,11 +37,11 @@ script = ExtResource("2_wnkjl")
 starting_state = NodePath("patrol")
 
 [node name="patrol" type="Node" parent="state_machine" node_paths=PackedStringArray("alert_state")]
-script = ExtResource("4_1usu2")
+script = ExtResource("4_dgrvh")
 alert_state = NodePath("../alert")
 
 [node name="alert" type="Node" parent="state_machine" node_paths=PackedStringArray("patrol_state")]
-script = ExtResource("5_edbxi")
+script = ExtResource("5_ktmno")
 patrol_state = NodePath("../patrol")
 
 [node name="Hitbox" type="Area2D" parent="."]

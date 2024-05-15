@@ -1,5 +1,4 @@
-class_name Enemy
-extends CharacterBody2D
+class_name Enemy extends CharacterBody2D
 
 @onready var state_machine := $state_machine
 @onready var animations
