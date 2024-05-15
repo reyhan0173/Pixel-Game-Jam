@@ -1,4 +1,4 @@
-class_name WaterTank extends Area2D
+class_name WaterTank extends Interactable
 
 
 ## Number of blocks of water in the tank.
@@ -27,23 +27,7 @@ func remove_water(amount: int) -> int:
 	return amount
 
 
-## Highlight/dehighlight the tank to let the player know this tank can be interacted with.
-func set_highlighted(value: bool) -> void:
-	pass
-
-
-func _on_body_entered(body: Node2D) -> void:
-	if body is Player:
-		set_highlighted(true)
-		body.interact_pressed.connect(_on_player_interact_pressed.bind(body))
-
-
-func _on_body_exited(body: Node2D) -> void:
-	if body is Player:
-		set_highlighted(false)
-		body.interact_pressed.disconnect(_on_player_interact_pressed)
-
-
 func _on_player_interact_pressed(player: Player) -> void:
+	super._on_player_interact_pressed(player)
 	var amount := remove_water(player.water_meter.get_empty_water_level())
 	player.water_meter.fill_water(amount)

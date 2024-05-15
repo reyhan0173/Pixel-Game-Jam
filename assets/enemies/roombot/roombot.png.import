@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce7jpqb4kjimg"
-path="res://.godot/imported/MC.png-2c230d380052901c8a558bf9f97a4f21.ctex"
+uid="uid://cu182yr1skqp8"
+path="res://.godot/imported/roombot.png-f2f34e8c4cde72b7d83eed0c185e5dc4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/MC.png"
-dest_files=["res://.godot/imported/MC.png-2c230d380052901c8a558bf9f97a4f21.ctex"]
+source_file="res://assets/enemies/roombot/roombot.png"
+dest_files=["res://.godot/imported/roombot.png-f2f34e8c4cde72b7d83eed0c185e5dc4.ctex"]
 
 [params]
 
