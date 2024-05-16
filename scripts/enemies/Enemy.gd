@@ -16,3 +16,8 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
+
+
+## Called when hit by a water ball.
+func on_hit() -> void:
+	pass

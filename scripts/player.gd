@@ -5,6 +5,8 @@ class_name Player extends CharacterBody2D
 signal interact_pressed
 signal died
 signal goal_reached
+signal water_ball_created
+signal water_ball_released
 
 
 @export var stats: PlayerConfig
@@ -29,6 +31,15 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		interact_pressed.emit()
+	if event.is_action_pressed("water_ball"):
+		if water_meter.get_water_level() > 0:
+			water_meter.remove_water(1)
+			water_ball_created.emit()
+		else:
+			# TODO: Indicator to show we lack water (e.g. flash water meter).
+			pass
+	elif event.is_action_released("water_ball"):
+		water_ball_released.emit()
 
 
 func on_level_entered(level: Level) -> void:
