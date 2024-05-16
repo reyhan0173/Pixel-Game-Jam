@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://cyb7v268j5o3u"]
 
-[ext_resource type="Script" path="res://scripts/roombot/Roombot.gd" id="1_a1ugr"]
+[ext_resource type="Script" path="res://scripts/enemies/roombot/Roombot.gd" id="1_a1ugr"]
 [ext_resource type="Texture2D" uid="uid://cu182yr1skqp8" path="res://assets/enemies/roombot/roombot.png" id="2_v23d4"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_wnkjl"]
-[ext_resource type="Script" path="res://scripts/roombot/bot_patrol.gd" id="4_dgrvh"]
-[ext_resource type="Script" path="res://scripts/roombot/alert.gd" id="5_ktmno"]
-[ext_resource type="Script" path="res://scenes/Hitbox.gd" id="6_oxqi2"]
+[ext_resource type="Script" path="res://scripts/enemies/roombot/patrol_bot.gd" id="4_dgrvh"]
+[ext_resource type="Script" path="res://scripts/enemies/roombot/alert.gd" id="5_ktmno"]
+[ext_resource type="Script" path="res://scripts/enemies/Hitbox.gd" id="6_oxqi2"]
 [ext_resource type="Texture2D" uid="uid://e0sycawpjw56" path="res://assets/light32.png" id="7_sk77l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exg1j"]
@@ -17,7 +17,7 @@ size = Vector2(15, 5)
 [node name="Roombot" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 2
-script = ExtResource("1_mx308")
+script = ExtResource("1_a1ugr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 6)
@@ -38,11 +38,11 @@ script = ExtResource("2_wnkjl")
 starting_state = NodePath("patrol")
 
 [node name="patrol" type="Node" parent="state_machine" node_paths=PackedStringArray("alert_state")]
-script = ExtResource("4_1usu2")
+script = ExtResource("4_dgrvh")
 alert_state = NodePath("../alert")
 
 [node name="alert" type="Node" parent="state_machine" node_paths=PackedStringArray("patrol_state")]
-script = ExtResource("5_edbxi")
+script = ExtResource("5_ktmno")
 patrol_state = NodePath("../patrol")
 
 [node name="Hitbox" type="Area2D" parent="."]

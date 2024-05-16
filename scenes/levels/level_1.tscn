@@ -3,8 +3,8 @@
 [ext_resource type="TileSet" uid="uid://cxkagr67yyc7" path="res://scenes/levels/tileset.tres" id="1_0nmjr"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_3f6v2"]
 [ext_resource type="PackedScene" uid="uid://bshsifg8bxyev" path="res://scenes/levels/level_dimmer.tscn" id="3_0k1it"]
-[ext_resource type="PackedScene" path="res://scenes/door.tscn" id="3_7c7cg"]
-[ext_resource type="PackedScene" path="res://scenes/goal.tscn" id="5_udwbc"]
+[ext_resource type="PackedScene" uid="uid://ceefqime0dmnl" path="res://scenes/door.tscn" id="3_7c7cg"]
+[ext_resource type="PackedScene" uid="uid://b5vx6gaxgkaqq" path="res://scenes/goal.tscn" id="5_udwbc"]
 
 [node name="Level1" type="TileMap"]
 position = Vector2(0, -4)
