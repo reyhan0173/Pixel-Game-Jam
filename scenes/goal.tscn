@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5vx6gaxgkaqq"]
+[gd_scene load_steps=3 format=3 uid="uid://c2nqv5bokkoax"]
 
 [ext_resource type="Script" path="res://scripts/interactable/goal.gd" id="1_1pw3m"]
 
