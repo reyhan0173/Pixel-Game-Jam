@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://preabc7uyad4"]
+[gd_scene load_steps=10 format=3 uid="uid://d27mxp1ff86u"]
 
-[ext_resource type="Script" path="res://scripts/human/human.gd" id="1_0yv0g"]
+[ext_resource type="Script" path="res://scripts/enemies/human/human.gd" id="1_dixbq"]
 [ext_resource type="Texture2D" uid="uid://dghkxoyrehd3q" path="res://assets/enemies/temphuman.png" id="1_eyt2q"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_kmx80"]
-[ext_resource type="Script" path="res://scripts/human/idle.gd" id="4_1buui"]
-[ext_resource type="Script" path="res://scripts/human/human_patrol.gd" id="5_ckia1"]
+[ext_resource type="Script" path="res://scripts/enemies/human/idle.gd" id="4_yrbjr"]
+[ext_resource type="Script" path="res://scripts/enemies/human/patrol_human.gd" id="5_1iqe3"]
+[ext_resource type="Script" path="res://scripts/enemies/human/shoot_human.gd" id="6_hyg7q"]
+[ext_resource type="Script" path="res://scripts/enemies/human/laser.gd" id="7_it28b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_noequ"]
 size = Vector2(26, 38)
@@ -15,7 +17,7 @@ size = Vector2(46, 38)
 [node name="human" type="CharacterBody2D"]
 collision_layer = 32
 collision_mask = 2
-script = ExtResource("1_0yv0g")
+script = ExtResource("1_dixbq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_noequ")
@@ -25,6 +27,7 @@ scale = Vector2(0.0978648, 0.0898618)
 texture = ExtResource("1_eyt2q")
 
 [node name="player_detection" type="Area2D" parent="."]
+collision_layer = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_detection"]
 position = Vector2(37, 0)
@@ -35,8 +38,23 @@ script = ExtResource("2_kmx80")
 starting_state = NodePath("patrol")
 
 [node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("patrol_state")]
-script = ExtResource("4_1buui")
+script = ExtResource("4_yrbjr")
 patrol_state = NodePath("../patrol")
 
-[node name="patrol" type="Node" parent="state_machine"]
-script = ExtResource("5_ckia1")
+[node name="patrol" type="Node" parent="state_machine" node_paths=PackedStringArray("shoot_state")]
+script = ExtResource("5_1iqe3")
+shoot_state = NodePath("../shoot")
+
+[node name="shoot" type="Node" parent="state_machine" node_paths=PackedStringArray("patrol_state")]
+script = ExtResource("6_hyg7q")
+patrol_state = NodePath("../patrol")
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = 3
+points = PackedVector2Array(0, 0, 20, 0)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("7_it28b")
+
+[connection signal="body_entered" from="player_detection" to="state_machine/patrol" method="_on_player_detection_body_entered"]
+[connection signal="player_position" from="state_machine/shoot" to="Line2D" method="_on_shoot_player_position"]
