@@ -1,28 +1,23 @@
-extends RayCast2D
+class_name Laser extends Line2D
 
-@onready var line = $Line2D
-
+var tween: Tween
 var direction: Vector2
 var is_firing: bool
 
-func _ready() -> void:
-	is_firing = false
-	pass
+func _ready():
+	# Initialize the width
+	width = 0
 
-
-func _physics_process(delta: float) -> void:
-	pass
 
 func fire(player_pos):
-	#direction = get_collision_point()
-	#to_local(player_pos)
-	#direction = player_pos
-	#print(direction)
-	#print(player_pos)
-	line.points[1] = player_pos - get_parent().position
-	line.start_firing_animation()
-	is_firing = false
+	self.points[1] = player_pos - get_parent().position
+	self.start_firing_animation()
 	pass
+
+
+func start_firing_animation():
+	tween = get_tree().create_tween()
+	tween.tween_property(self, "width", 2.5, 0.1).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 
 
 func _on_shoot_player_position(player_pos):
