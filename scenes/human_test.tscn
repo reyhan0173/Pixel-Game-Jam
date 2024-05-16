@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://jgtoxigotfkf"]
+[gd_scene load_steps=7 format=3 uid="uid://jgtoxigotfkf"]
 
 [ext_resource type="Texture2D" uid="uid://dvt4vaqos4xp" path="res://assets/tiles/ground.png" id="1_j18wi"]
-[ext_resource type="PackedScene" uid="uid://bhpqwbnbvkb2g" path="res://scenes/player.tscn" id="2_bjoub"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="2_l6f6y"]
+[ext_resource type="Resource" uid="uid://ytowbcl6whle" path="res://player_config.tres" id="3_6kckp"]
 [ext_resource type="PackedScene" uid="uid://d27mxp1ff86u" path="res://scenes/human.tscn" id="4_0auog"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pcjm3"]
@@ -21,8 +22,11 @@ tile_set = SubResource("TileSet_wfwn5")
 format = 2
 layer_0/tile_data = PackedInt32Array(589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 655357, 1, 0, 655356, 1, 0, 655355, 1, 0, 655354, 1, 0, 655353, 1, 0, 655352, 1, 0, 655351, 1, 0, 655350, 1, 0, 655358, 1, 0, 655359, 1, 0, 589824, 1, 0, 655349, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 655348, 1, 0, 655347, 1, 0, 655346, 1, 0, 655345, 1, 0, 589809, 1, 0, 524273, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 524298, 1, 0)
 
-[node name="Player" parent="." instance=ExtResource("2_bjoub")]
+[node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(87, 118)
+collision_mask = 15
+script = ExtResource("2_l6f6y")
+stats = ExtResource("3_6kckp")
 
 [node name="human" parent="." instance=ExtResource("4_0auog")]
 position = Vector2(-50, 123)
