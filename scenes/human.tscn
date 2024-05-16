@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_kmx80"]
 [ext_resource type="Script" path="res://scripts/enemies/human/idle.gd" id="4_yrbjr"]
 [ext_resource type="Script" path="res://scripts/enemies/human/patrol_human.gd" id="5_1iqe3"]
-[ext_resource type="Script" path="res://scenes/shoot_human.gd" id="6_aw2um"]
-[ext_resource type="Script" path="res://scenes/laser.gd" id="7_bmx4f"]
+[ext_resource type="Script" path="res://scripts/enemies/human/shoot_human.gd" id="6_hyg7q"]
+[ext_resource type="Script" path="res://scripts/enemies/human/laser.gd" id="7_it28b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_noequ"]
 size = Vector2(26, 38)
@@ -46,7 +46,7 @@ script = ExtResource("5_1iqe3")
 shoot_state = NodePath("../shoot")
 
 [node name="shoot" type="Node" parent="state_machine" node_paths=PackedStringArray("patrol_state")]
-script = ExtResource("6_aw2um")
+script = ExtResource("6_hyg7q")
 patrol_state = NodePath("../patrol")
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -54,7 +54,7 @@ z_index = 3
 points = PackedVector2Array(0, 0, 20, 0)
 width = 3.0
 default_color = Color(0, 0, 0, 1)
-script = ExtResource("7_bmx4f")
+script = ExtResource("7_it28b")
 
 [connection signal="body_entered" from="player_detection" to="state_machine/patrol" method="_on_player_detection_body_entered"]
 [connection signal="player_position" from="state_machine/shoot" to="Line2D" method="_on_shoot_player_position"]

@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/enemies/roombot/patrol_bot.gd" id="4_1usu2"]
 [ext_resource type="Texture2D" uid="uid://17eo3f2kmqbv" path="res://assets/enemies/temproombot.png" id="4_fse7k"]
 [ext_resource type="Script" path="res://scripts/enemies/roombot/alert.gd" id="5_edbxi"]
-[ext_resource type="Script" path="res://scenes/Hitbox.gd" id="6_oxqi2"]
+[ext_resource type="Script" path="res://scripts/enemies/Hitbox.gd" id="6_oxqi2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exg1j"]
 size = Vector2(20, 12)
