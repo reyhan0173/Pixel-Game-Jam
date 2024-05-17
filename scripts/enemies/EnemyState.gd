@@ -2,6 +2,7 @@ class_name EnemyState extends Node
 
 @export var animation_name: String
 @export var move_speed: float = 300
+
 # Add consistent gravity for this
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Instead of assigning Enemy type which changes

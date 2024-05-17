@@ -30,7 +30,6 @@ func process_physics(delta: float) -> void:
 
 
 func process_frame(delta: float) -> void:
-	print(current_state)
 	var new_state = current_state.process_frame(delta)
 	if new_state:
 		change_state(new_state)
