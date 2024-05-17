@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://scripts/water_ball/water.gdshader" id="1_2kr8x"]
 [ext_resource type="Script" path="res://scripts/water_ball/water_ball.gd" id="2_qreci"]
-[ext_resource type="Texture2D" path="res://assets/light32.png" id="3_q6654"]
+[ext_resource type="Texture2D" uid="uid://e0sycawpjw56" path="res://assets/lights/light32.png" id="3_ch6jv"]
 
 [sub_resource type="Gradient" id="Gradient_8erbr"]
 colors = PackedColorArray(0, 1, 1, 1, 0, 1, 1, 0)
@@ -47,8 +47,9 @@ noise = SubResource("FastNoiseLite_hhlsr")
 radius = 8.0
 
 [node name="WaterBall" type="Area2D"]
+z_index = 1
 collision_layer = 4
-collision_mask = 50
+collision_mask = 114
 script = ExtResource("2_qreci")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
@@ -65,6 +66,7 @@ shape = SubResource("CircleShape2D_ys20h")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 0.5
-texture = ExtResource("3_q6654")
+texture = ExtResource("3_ch6jv")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

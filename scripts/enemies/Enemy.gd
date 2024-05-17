@@ -21,3 +21,8 @@ func _process(delta: float) -> void:
 ## Called when hit by a water ball.
 func on_hit() -> void:
 	pass
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Player:
+		body.die()

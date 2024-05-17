@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://jgtoxigotfkf"]
+[gd_scene load_steps=7 format=3 uid="uid://bw3lmtnvfm8xo"]
 
 [ext_resource type="Texture2D" uid="uid://dvt4vaqos4xp" path="res://assets/tiles/ground.png" id="1_j18wi"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_l6f6y"]

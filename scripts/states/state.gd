@@ -2,7 +2,7 @@ class_name State extends Node
 
 
 enum Player {
-	STILL_GROUND, MOVE_GROUND, STILL_AIR, MOVE_AIR,
+	STILL_GROUND, MOVE_GROUND, STILL_AIR, MOVE_AIR, DEAD,
 }
 
 var player: Player
