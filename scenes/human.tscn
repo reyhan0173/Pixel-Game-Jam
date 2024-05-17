@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d27mxp1ff86u"]
+[gd_scene load_steps=11 format=3 uid="uid://d27mxp1ff86u"]
 
 [ext_resource type="Script" path="res://scripts/enemies/human/human.gd" id="1_dixbq"]
 [ext_resource type="Texture2D" uid="uid://dghkxoyrehd3q" path="res://assets/enemies/temphuman.png" id="1_eyt2q"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/enemies/human/patrol_human.gd" id="5_1iqe3"]
 [ext_resource type="Script" path="res://scripts/enemies/human/shoot_human.gd" id="6_hyg7q"]
 [ext_resource type="Script" path="res://scripts/enemies/human/laser.gd" id="7_it28b"]
+[ext_resource type="Script" path="res://scenes/investigate.gd" id="7_rkm8b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_noequ"]
 size = Vector2(26, 38)
@@ -44,10 +45,14 @@ patrol_state = NodePath("../patrol")
 [node name="patrol" type="Node" parent="state_machine" node_paths=PackedStringArray("shoot_state")]
 script = ExtResource("5_1iqe3")
 shoot_state = NodePath("../shoot")
+speed = 100.0
 
 [node name="shoot" type="Node" parent="state_machine" node_paths=PackedStringArray("patrol_state")]
 script = ExtResource("6_hyg7q")
 patrol_state = NodePath("../patrol")
+
+[node name="investigate" type="Node" parent="state_machine"]
+script = ExtResource("7_rkm8b")
 
 [node name="Line2D" type="Line2D" parent="."]
 z_index = 3
@@ -56,5 +61,8 @@ width = 3.0
 default_color = Color(0, 0, 0, 1)
 script = ExtResource("7_it28b")
 
+[node name="Patrol_Pause" type="Timer" parent="."]
+
 [connection signal="body_entered" from="player_detection" to="state_machine/patrol" method="_on_player_detection_body_entered"]
 [connection signal="player_position" from="state_machine/shoot" to="Line2D" method="_on_shoot_player_position"]
+[connection signal="timeout" from="Patrol_Pause" to="state_machine/investigate" method="_on_patrol_pause_timeout"]
