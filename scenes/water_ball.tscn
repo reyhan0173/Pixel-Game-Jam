@@ -1,50 +1,37 @@
-[gd_scene load_steps=13 format=3 uid="uid://qnuwql1hsdvg"]
+[gd_scene load_steps=11 format=3 uid="uid://qnuwql1hsdvg"]
 
 [ext_resource type="Shader" path="res://scripts/water_ball/water.gdshader" id="1_2kr8x"]
 [ext_resource type="Script" path="res://scripts/water_ball/water_ball.gd" id="2_qreci"]
 [ext_resource type="Texture2D" uid="uid://e0sycawpjw56" path="res://assets/lights/light32.png" id="3_ch6jv"]
 
-[sub_resource type="Gradient" id="Gradient_8erbr"]
-colors = PackedColorArray(0, 1, 1, 1, 0, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_4hhxi"]
-gradient = SubResource("Gradient_8erbr")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_tj7s1"]
-seed = 1
-frequency = 0.1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kqfje"]
-width = 16
-height = 16
-seamless = true
-noise = SubResource("FastNoiseLite_tj7s1")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y8t36"]
-shader = ExtResource("1_2kr8x")
-shader_parameter/velocity = Vector2(-0.1, -0.13)
-shader_parameter/velocity2 = Vector2(0.1, 0.1)
-shader_parameter/noise = SubResource("NoiseTexture2D_kqfje")
-shader_parameter/gradient = SubResource("GradientTexture1D_4hhxi")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_it3kr"]
-particle_flag_align_y = true
-particle_flag_disable_z = true
-angular_velocity_min = -50.0
-angular_velocity_max = 50.0
-gravity = Vector3(0, 1000, 0)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_hhlsr"]
-frequency = 0.1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0trqa"]
-width = 16
-height = 16
-seamless = true
-noise = SubResource("FastNoiseLite_hhlsr")
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_ys20h"]
 radius = 8.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7lfi2"]
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rjxv1"]
+seamless = true
+noise = SubResource("FastNoiseLite_7lfi2")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2btfc"]
+seed = 1
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mydjm"]
+seamless = true
+noise = SubResource("FastNoiseLite_2btfc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbcdj"]
+shader = ExtResource("1_2kr8x")
+shader_parameter/scroll1 = Vector2(0.025, -0.015)
+shader_parameter/scroll2 = Vector2(-0.01, 0.01)
+shader_parameter/color = Color(0, 1, 1, 1)
+shader_parameter/noise1 = SubResource("NoiseTexture2D_rjxv1")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_mydjm")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_iusls"]
+size = Vector2(16, 16)
 
 [node name="WaterBall" type="Area2D"]
 z_index = 1
@@ -52,17 +39,12 @@ collision_layer = 4
 collision_mask = 114
 script = ExtResource("2_qreci")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-texture_repeat = 2
-material = SubResource("ShaderMaterial_y8t36")
-amount = 32
-process_material = SubResource("ParticleProcessMaterial_it3kr")
-texture = SubResource("NoiseTexture2D_0trqa")
-lifetime = 0.2
-preprocess = 1.0
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ys20h")
+
+[node name="Shader" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_tbcdj")
+texture = SubResource("PlaceholderTexture2D_iusls")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 0.5

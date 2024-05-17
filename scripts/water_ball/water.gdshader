@@ -1,52 +1,30 @@
 shader_type canvas_item;
 
 
-// Secondary noise sampler to make the water more complex.
-uniform sampler2D noise: repeat_enable;
-// Color ramp that we multiply the color by over its lifetime.
-uniform sampler2D gradient;
-// Two velocity variables to scroll the textures.
-uniform vec2 velocity;
-uniform vec2 velocity2;
-
-varying float lifetime;
+uniform sampler2D screen_texture: hint_screen_texture, repeat_disable, filter_nearest;
 
 
-void vertex() {
-	lifetime = INSTANCE_CUSTOM.y;
-}
+uniform sampler2D noise1: repeat_enable;
+uniform sampler2D noise2: repeat_enable;
+uniform vec2 scroll1 = vec2(0.025, -0.015);
+uniform vec2 scroll2 = vec2(-0.01, 0.01);
+
+uniform vec4 color: source_color;
 
 
 void fragment() {
-	// value is used for surrounding opacity, to make the water round.
-	float value = texture(noise, UV + velocity2 * TIME).r;
-	value = mix(1.0, value, 0.5);
-	value *= pow(sin(UV.x * PI), 1.0);
-	value *= pow(sin(UV.y * PI), 1.0);
-	value = pow(value, 0.5);
+	// scroll two noises across time and multiply them.
+	float noise = texture(noise1, SCREEN_UV + scroll1 * TIME).r * texture(noise2, SCREEN_UV + scroll2 * TIME).r;
+	// sample the screen texture, but the point of sampling is distorted by the noise.
+	vec4 screen_color = texture(screen_texture, SCREEN_UV + 0.05 * vec2(noise));
+	// mix in a blue hue.
+	COLOR = mix(screen_color, color, 0.3);
 	
-	// Scroll two noise textures and mix them.
-	vec4 texture1 = texture(TEXTURE, UV + velocity * TIME);
-	vec4 texture2 = texture(noise, UV + velocity2 * TIME);
-	vec4 color = mix(texture1, texture2, 0.5);
-	float brightness = (color.r + color.g + color.b) / 3.0;
-	
-	// Assign the initial color of the final image.
-	COLOR = color;
-	
-	// Round out the edges using value.
-	if (value < 0.5) {
+	// round out the edges.
+	noise = pow(noise, 0.7);
+	noise *= pow(sin(UV.x * PI / 4.0), 1.0);
+	noise *= pow(sin(UV.y * PI / 4.0), 1.0);
+	if (noise < 0.1) {
 		COLOR.a = 0.0;
 	}
-	// Remove fleeting opacity values
-	if (color.r < 0.2) {
-		COLOR.a = 0.0;
-	}
-	COLOR.rgb = vec3(1.0);
-	COLOR *= texture(gradient, vec2(brightness+lifetime));
-	//if (COLOR.a > 0.1) {
-		//COLOR.a = 1.0;
-	//} else {
-		//COLOR.a = 0.0;
-	//}
 }
