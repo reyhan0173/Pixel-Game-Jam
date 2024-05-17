@@ -28,5 +28,13 @@ func release() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		body.on_hit()
-	# TODO: play splash animation before freeing. May want to lookup collision normal here.
-	queue_free()
+		# TODO: play splash animation before freeing. May want to lookup collision normal here.
+		queue_free()
+	elif _released:
+		queue_free()
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is Lock:
+		area.unlock()
+		queue_free()

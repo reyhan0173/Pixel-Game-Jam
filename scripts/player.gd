@@ -21,6 +21,7 @@ var acceleration: Vector2
 	State.Player.MOVE_GROUND: $MoveGroundState,
 	State.Player.STILL_AIR: $StillAirState,
 	State.Player.MOVE_AIR: $MoveAirState,
+	State.Player.DEAD: $DeadState,
 }
 
 
@@ -76,5 +77,5 @@ func is_coyote_jump_enabled() -> bool:
 
 
 func die() -> void:
-	# TODO: transition to die state
+	transition_to(State.Player.DEAD)
 	died.emit() # TODO: emit after a delay (once die animation completes)

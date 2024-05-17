@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=3 uid="uid://b8hg0pp6dbuqf"]
+
+[ext_resource type="Texture2D" uid="uid://btmfw4kkpo3nb" path="res://assets/lock/lock.png" id="1_0eyac"]
+[ext_resource type="Script" path="res://scripts/lock.gd" id="1_lipgw"]
+[ext_resource type="Texture2D" uid="uid://e0sycawpjw56" path="res://assets/lights/light32.png" id="3_2bleg"]
+[ext_resource type="Texture2D" uid="uid://bvi7ifloqdmwt" path="res://assets/lock/unlock.png" id="3_yfpng"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_comj4"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_i4bgh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_0eyac")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_kwuwm"]
+resource_name = "unlock"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_yfpng")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nvx20"]
+_data = {
+"RESET": SubResource("Animation_i4bgh"),
+"unlock": SubResource("Animation_kwuwm")
+}
+
+[node name="Lock" type="Area2D"]
+collision_layer = 64
+collision_mask = 4
+script = ExtResource("1_lipgw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_comj4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0eyac")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0, 0, 1)
+energy = 0.2
+texture = ExtResource("3_2bleg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nvx20")
+}
