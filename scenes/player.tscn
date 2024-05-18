@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhpqwbnbvkb2g"]
+[gd_scene load_steps=15 format=3 uid="uid://bhpqwbnbvkb2g"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_hx8jc"]
 [ext_resource type="Resource" uid="uid://ytowbcl6whle" path="res://player_config.tres" id="2_0vbg1"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" path="res://scripts/states/player/move_air_state.gd" id="6_53mr4"]
 [ext_resource type="Script" path="res://scripts/water_meter.gd" id="8_s04pl"]
 [ext_resource type="Script" path="res://scripts/states/player/dead_state.gd" id="9_hqprr"]
+[ext_resource type="Texture2D" uid="uid://i0c65q0cem0g" path="res://assets/water_meter/under.png" id="10_t74dl"]
+[ext_resource type="Texture2D" uid="uid://cmtyy25k0d72q" path="res://assets/water_meter/over.png" id="10_yqwby"]
+[ext_resource type="Texture2D" uid="uid://bexq2oakagl72" path="res://assets/water_meter/progress.png" id="12_mbq61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dysfe"]
 size = Vector2(6, 13)
@@ -54,13 +57,15 @@ script = ExtResource("9_hqprr")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="WaterMeter" type="ProgressBar" parent="CanvasLayer"]
+[node name="WaterMeter" type="TextureProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
 offset_left = 3.0
 offset_top = 3.0
-offset_right = 141.0
-offset_bottom = 30.0
-max_value = 10.0
-step = 1.0
-show_percentage = false
+offset_right = 59.0
+offset_bottom = 19.0
+max_value = 8.0
+texture_under = ExtResource("10_t74dl")
+texture_over = ExtResource("10_yqwby")
+texture_progress = ExtResource("12_mbq61")
+texture_progress_offset = Vector2(16, 7)
 script = ExtResource("8_s04pl")
