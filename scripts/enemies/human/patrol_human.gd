@@ -3,7 +3,7 @@ class_name HumanPatrol extends Patrol
 @export var shoot_state: EnemyState
 #@export var investigate_state: EnemyState
 @onready var timer = $Timer
-@onready var sprite = get_node("../Temphuman")
+#@onready var sprite = get_node("../Temphuman")
 
 var player_detected: bool
 var sound_heard: bool = false
@@ -13,16 +13,17 @@ var walking_to_sound: bool = false
 var currently_investigating: bool = false
 
 
-func process_frame(delta: float) -> EnemyState:
+func process_frame(_delta: float) -> EnemyState:
 	#print("walking_to_sound: " + str(walking_to_sound))
 	#print("currently_investigating: " + str(currently_investigating))
 	#print(timer.time_left)
-	print("investigate_location.x: " + str(investigate_location.x))
-	print("parent.velocity.x: " + str(parent.velocity.x))
-	print(direction_to_sound)
+	#print("investigate_location.x: " + str(investigate_location.x))
+	#print("parent.velocity.x: " + str(parent.velocity.x))
+	#print(direction_to_sound)
+	print("Current Human Scale: " + str(parent.scale.x))
 	
-	#if player_detected:
-		#return shoot_state
+	if player_detected:
+		return shoot_state
 	return null
 
 
@@ -49,6 +50,7 @@ func process_physics(delta: float) -> EnemyState:
 	if parent.is_on_wall():
 		direction *= -1
 		parent.scale.x *= -1
+		print("Human Scale Changed: ", parent.scale.x)  # Debug print
 	if walking_to_sound:
 		var direction_to_sound = (investigate_location - parent.position).normalized()
 		var horizontal_velocity = direction_to_sound.x * speed
