@@ -23,19 +23,6 @@ script = ExtResource("1_dixbq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_noequ")
 
-[node name="Temphuman" type="Sprite2D" parent="."]
-position = Vector2(-1.90735e-06, -1.90735e-06)
-scale = Vector2(1.625, 1.1875)
-texture = ExtResource("2_gmygc")
-flip_h = true
-
-[node name="player_detection" type="Area2D" parent="."]
-collision_layer = 256
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detection"]
-position = Vector2(37, 0)
-shape = SubResource("RectangleShape2D_7emb7")
-
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("2_kmx80")
 starting_state = NodePath("patrol")
@@ -56,17 +43,34 @@ one_shot = true
 script = ExtResource("6_hyg7q")
 patrol_state = NodePath("../patrol")
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="direction" type="Node2D" parent="."]
+
+[node name="Temphuman" type="Sprite2D" parent="direction"]
+position = Vector2(-1.90735e-06, -1.90735e-06)
+scale = Vector2(1.625, 1.1875)
+texture = ExtResource("2_gmygc")
+flip_h = true
+
+[node name="player_detection" type="Area2D" parent="direction"]
+collision_layer = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="direction/player_detection"]
+position = Vector2(37, 0)
+shape = SubResource("RectangleShape2D_7emb7")
+
+[node name="Sprite2D" type="Sprite2D" parent="direction"]
+position = Vector2(7, 1)
+texture = ExtResource("8_yqh4y")
+flip_h = true
+
+[node name="Line2D" type="Line2D" parent="direction"]
 points = PackedVector2Array(0, 0, 20, 0)
 width = 3.0
 default_color = Color(0, 0, 0, 1)
 script = ExtResource("7_it28b")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(7, 1)
-texture = ExtResource("8_yqh4y")
-flip_h = true
+[node name="RayCast2D" type="RayCast2D" parent="direction/Line2D"]
 
-[connection signal="body_entered" from="player_detection" to="state_machine/patrol" method="_on_player_detection_body_entered"]
 [connection signal="timeout" from="state_machine/patrol/Timer" to="state_machine/patrol" method="_on_timer_timeout"]
-[connection signal="player_position" from="state_machine/shoot" to="Line2D" method="_on_shoot_player_position"]
+[connection signal="player_position" from="state_machine/shoot" to="direction/Line2D" method="_on_shoot_player_position"]
+[connection signal="body_entered" from="direction/player_detection" to="state_machine/patrol" method="_on_player_detection_body_entered"]

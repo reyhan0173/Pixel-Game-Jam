@@ -3,6 +3,7 @@ class_name HumanPatrol extends Patrol
 @export var shoot_state: EnemyState
 #@export var investigate_state: EnemyState
 @onready var timer = $Timer
+@onready var direction_node = get_node("../../direction")
 #@onready var sprite = get_node("../Temphuman")
 
 var player_detected: bool
@@ -20,7 +21,7 @@ func process_frame(_delta: float) -> EnemyState:
 	#print("investigate_location.x: " + str(investigate_location.x))
 	#print("parent.velocity.x: " + str(parent.velocity.x))
 	#print(direction_to_sound)
-	print("Current Human Scale: " + str(parent.scale.x))
+	print("Current Scale in Human: " + str(direction_node.scale.x))
 	
 	if player_detected:
 		return shoot_state
@@ -49,8 +50,7 @@ func _on_player_detection_body_entered(body):
 func process_physics(delta: float) -> EnemyState:
 	if parent.is_on_wall():
 		direction *= -1
-		parent.scale.x *= -1
-		print("Human Scale Changed: ", parent.scale.x)  # Debug print
+		direction_node.scale.x *= -1
 	if walking_to_sound:
 		var direction_to_sound = (investigate_location - parent.position).normalized()
 		var horizontal_velocity = direction_to_sound.x * speed
@@ -62,12 +62,10 @@ func process_physics(delta: float) -> EnemyState:
 		else:
 			parent.velocity.x = horizontal_velocity
 			parent.velocity.y = gravity * delta
-			#### EDIT THIS #####
-			#if parent.velocity.x > 0:
-				#parent.sprite.scale.x *= 1
-			#if parent.velocity.x < 0:
-				#parent.sprite.scale.x *= -1
-				
+			if parent.velocity.x > 0:
+				direction_node.scale.x = 1
+			if parent.velocity.x < 0:
+				direction_node.scale.x= -1
 	if currently_investigating:
 		parent.velocity = Vector2.ZERO
 	if !walking_to_sound && !currently_investigating:
