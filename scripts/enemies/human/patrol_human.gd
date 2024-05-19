@@ -3,6 +3,7 @@ class_name HumanPatrol extends Patrol
 @export var shoot_state: EnemyState
 #@export var investigate_state: EnemyState
 @onready var timer = $Timer
+@onready var sprite = get_node("../Temphuman")
 
 var player_detected: bool
 var sound_heard: bool = false
@@ -17,7 +18,7 @@ func process_frame(delta: float) -> EnemyState:
 	#print("currently_investigating: " + str(currently_investigating))
 	#print(timer.time_left)
 	print("investigate_location.x: " + str(investigate_location.x))
-	print("parent.position.x: " + str(parent.position.x))
+	print("parent.velocity.x: " + str(parent.velocity.x))
 	print(direction_to_sound)
 	
 	#if player_detected:
@@ -42,7 +43,6 @@ func _on_player_detection_body_entered(body):
 
 
 ##### CURRENT ISSUES: ########
-## Gravity does not apply when walking to sound
 ## Sprite and Body does not face direction of sound
 
 func process_physics(delta: float) -> EnemyState:
@@ -51,18 +51,20 @@ func process_physics(delta: float) -> EnemyState:
 		parent.scale.x *= -1
 	if walking_to_sound:
 		var direction_to_sound = (investigate_location - parent.position).normalized()
+		var horizontal_velocity = direction_to_sound.x * speed
 		if parent.position.distance_to(investigate_location) < 40:
 			currently_investigating = true
 			walking_to_sound = false
 			timer.start()
 			parent.velocity = Vector2.ZERO
 		else:
-			parent.velocity = direction_to_sound * speed
-			#
-			if investigate_location.x > parent.position.x:
-				parent.sprite.x = 1
-			elif investigate_location.x < parent.position.x:
-				parent.scale.x = -1
+			parent.velocity.x = horizontal_velocity
+			parent.velocity.y = gravity * delta
+			#### EDIT THIS #####
+			#if parent.velocity.x > 0:
+				#parent.sprite.scale.x *= 1
+			#if parent.velocity.x < 0:
+				#parent.sprite.scale.x *= -1
 				
 	if currently_investigating:
 		parent.velocity = Vector2.ZERO

@@ -2,7 +2,6 @@ extends TileMap
 
 @onready var human = $human
 @onready var player = $Player
-var target_pos := Vector2(0, 100)
 var patrol_state = Node2D
 var player_pos
 # Called when the node enters the scene tree for the first time.
