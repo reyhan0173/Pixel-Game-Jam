@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dahqu72cxdo3"]
+[gd_scene load_steps=8 format=3 uid="uid://dahqu72cxdo3"]
 
 [ext_resource type="TileSet" uid="uid://cxkagr67yyc7" path="res://scenes/levels/tileset.tres" id="1_jlyi7"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_p5aov"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://c2nqv5bokkoax" path="res://scenes/goal.tscn" id="4_cbyc5"]
 [ext_resource type="PackedScene" uid="uid://b8hg0pp6dbuqf" path="res://scenes/lock.tscn" id="5_fsjih"]
 [ext_resource type="PackedScene" uid="uid://cyb7v268j5o3u" path="res://scenes/roombot.tscn" id="5_qgnmg"]
-[ext_resource type="Texture2D" uid="uid://bf42c6ttbfr7e" path="res://assets/goal/goal_1.png" id="5_u333l"]
 [ext_resource type="PackedScene" uid="uid://ceotskjind3if" path="res://scenes/water_tank.tscn" id="6_dmql8"]
 
 [node name="Level2" type="TileMap"]
@@ -29,9 +28,6 @@ position = Vector2(72, 112)
 [node name="Goal" parent="." instance=ExtResource("4_cbyc5")]
 position = Vector2(312, 136)
 lock_count = 2
-
-[node name="Sprite2D" parent="Goal" index="0"]
-texture = ExtResource("5_u333l")
 
 [node name="Lock" parent="Goal/Locks" index="0" instance=ExtResource("5_fsjih")]
 position = Vector2(272, 108)

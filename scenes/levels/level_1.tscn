@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://3nl7vyr2ujqn"]
+[gd_scene load_steps=7 format=3 uid="uid://3nl7vyr2ujqn"]
 
 [ext_resource type="TileSet" uid="uid://cxkagr67yyc7" path="res://scenes/levels/tileset.tres" id="1_0nmjr"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_3f6v2"]
 [ext_resource type="PackedScene" uid="uid://bshsifg8bxyev" path="res://scenes/levels/level_dimmer.tscn" id="3_0k1it"]
 [ext_resource type="PackedScene" uid="uid://b8hg0pp6dbuqf" path="res://scenes/lock.tscn" id="5_0drnt"]
-[ext_resource type="Texture2D" uid="uid://bf42c6ttbfr7e" path="res://assets/goal/goal_1.png" id="5_4re53"]
 [ext_resource type="PackedScene" uid="uid://c2nqv5bokkoax" path="res://scenes/goal.tscn" id="5_udwbc"]
 [ext_resource type="PackedScene" uid="uid://ceotskjind3if" path="res://scenes/water_tank.tscn" id="6_qwvdf"]
 
@@ -27,9 +26,6 @@ position = Vector2(216, 144)
 
 [node name="Goal" parent="." instance=ExtResource("5_udwbc")]
 position = Vector2(256, 120)
-
-[node name="Sprite2D" parent="Goal" index="0"]
-texture = ExtResource("5_4re53")
 
 [node name="Lock" parent="Goal/Locks" index="0" instance=ExtResource("5_0drnt")]
 position = Vector2(200, 116)
