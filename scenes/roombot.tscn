@@ -1,26 +1,26 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyb7v268j5o3u"]
+[gd_scene load_steps=9 format=3 uid="uid://cyb7v268j5o3u"]
 
 [ext_resource type="Script" path="res://scripts/enemies/roombot/Roombot.gd" id="1_a1ugr"]
 [ext_resource type="Texture2D" uid="uid://cu182yr1skqp8" path="res://assets/enemies/roombot/roombot.png" id="2_v23d4"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_wnkjl"]
 [ext_resource type="Script" path="res://scripts/enemies/roombot/patrol_bot.gd" id="4_dgrvh"]
 [ext_resource type="Script" path="res://scripts/enemies/roombot/alert.gd" id="5_ktmno"]
-[ext_resource type="Script" path="res://scripts/enemies/Hitbox.gd" id="6_oxqi2"]
-[ext_resource type="Texture2D" uid="uid://e0sycawpjw56" path="res://assets/light32.png" id="7_sk77l"]
+[ext_resource type="Texture2D" uid="uid://e0sycawpjw56" path="res://assets/lights/light32.png" id="6_wtiho"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exg1j"]
-size = Vector2(13, 4)
+size = Vector2(12, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmr6f"]
-size = Vector2(15, 5)
+size = Vector2(14, 5)
 
 [node name="Roombot" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_a1ugr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 6)
+position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_exg1j")
 
 [node name="Temproombot" type="Sprite2D" parent="."]
@@ -46,18 +46,18 @@ script = ExtResource("5_ktmno")
 patrol_state = NodePath("../patrol")
 
 [node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(0, 6)
 collision_layer = 255
 collision_mask = 255
-script = ExtResource("6_oxqi2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0.5, 5.5)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_jmr6f")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(2, 6)
 color = Color(1, 1, 0, 1)
 energy = 0.5
-texture = ExtResource("7_sk77l")
+texture = ExtResource("6_wtiho")
 
-[connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_body_entered"]

@@ -2,6 +2,7 @@ class_name Level extends TileMap
 
 
 signal goal_reached
+signal goal_failed
 
 
 @export var limit_left: int
@@ -36,6 +37,10 @@ func spawn_player() -> void:
 			if !_held_water_ball: # There is no water ball. Probably won't reach this line.
 				return
 			_held_water_ball.release()
+	)
+	player.died.connect(
+		func() -> void:
+			goal_failed.emit()
 	)
 	player.position = $Spawn.position
 	player.on_level_entered(self)

@@ -56,3 +56,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	patrol = body.get_node("state_machine/patrol")
 	patrol.get_splash_pos(splash_location)
 	pass
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is Lock:
+		area.unlock()
+		queue_free()

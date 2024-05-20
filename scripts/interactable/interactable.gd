@@ -5,7 +5,11 @@ class_name Interactable extends Area2D
 
 ## Highlight/dehighlight the object to let the player know this object can be interacted with.
 func set_highlighted(value: bool) -> void:
-	pass
+	if has_node("Prompt"):
+		if value:
+			$Prompt.show()
+		else:
+			$Prompt.hide()
 
 
 func _on_body_entered(body: Node2D) -> void:

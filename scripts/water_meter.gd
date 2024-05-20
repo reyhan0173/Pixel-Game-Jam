@@ -1,4 +1,4 @@
-class_name WaterMeter extends ProgressBar
+class_name WaterMeter extends TextureProgressBar
 
 
 ## Returns the amount of water in the meter.

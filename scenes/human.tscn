@@ -16,6 +16,7 @@ size = Vector2(26, 38)
 size = Vector2(46, 38)
 
 [node name="human" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 32
 collision_mask = 2
 script = ExtResource("1_dixbq")

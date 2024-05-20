@@ -14,6 +14,11 @@ func _ready() -> void:
 	transition_to_level(_current_level_index)
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("restart"):
+		transition_to_level(_current_level_index)
+
+
 func transition_to_level(level_index: int) -> void:
 	var level: Level = _level_resource.levels[level_index].instantiate()
 	var tween := create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
@@ -32,6 +37,7 @@ func transition_to_level(level_index: int) -> void:
 					else:
 						transition_to_level(_current_level_index)
 			)
+			level.goal_failed.connect(transition_to_level.bind(_current_level_index))
 			var tween2 := create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 			tween2.tween_property($ColorRect, "modulate:a", 0.0, _transition_time)
 	)
