@@ -2,20 +2,26 @@ class_name HumanPatrol extends Patrol
 
 @export var shoot_state: EnemyState
 
+@onready var timer = $Timer
+@onready var direction_node = get_node("../../direction")
+
 var player_detected: bool
 var sound_heard: bool = false
-var target_position: Vector2
+var investigate_location: Vector2
+var direction_to_sound
+var walking_to_sound: bool = false
+var currently_investigating: bool = false
 
 
-func process_frame(delta: float) -> EnemyState:
-	#if player_detected:
-		#return shoot_state
+func process_frame(_delta: float) -> EnemyState:
+	if player_detected:
+		return shoot_state
 	return null
 
 
-func _on_sound_heard(pos: Vector2):
-	target_position = pos
-	sound_heard = true
+func get_splash_pos(pos: Vector2):
+	investigate_location = pos
+	walking_to_sound = true
 	pass
 
 
@@ -26,15 +32,29 @@ func _on_player_detection_body_entered(body):
 func process_physics(delta: float) -> EnemyState:
 	if parent.is_on_wall():
 		direction *= -1
-		parent.scale.x *= -1
-	if sound_heard:
-		var direction_to_sound = (target_position - parent.position).normalized()
-		if parent.position.distance_to(target_position - parent.position) < 10:
+		direction_node.scale.x *= -1
+	if walking_to_sound:
+		var direction_to_sound = (investigate_location - parent.position).normalized()
+		var horizontal_velocity = direction_to_sound.x * speed
+		if parent.position.distance_to(investigate_location) < 50:
+			currently_investigating = true
+			walking_to_sound = false
+			timer.start()
 			parent.velocity = Vector2.ZERO
-			sound_heard = false
 		else:
-			parent.velocity = direction_to_sound * speed
-	else:
+			parent.velocity.x = horizontal_velocity
+			parent.velocity.y = gravity * delta
+			if parent.velocity.x > 0:
+				direction_node.scale.x = 1
+			if parent.velocity.x < 0:
+				direction_node.scale.x= -1
+	if currently_investigating:
+		parent.velocity = Vector2.ZERO
+	if !walking_to_sound && !currently_investigating:
 		parent.velocity = Vector2(speed * direction, gravity * delta)
 	parent.move_and_slide()
 	return null
+
+
+func _on_timer_timeout():
+	currently_investigating = false

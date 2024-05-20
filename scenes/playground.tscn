@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ceny4pga54mbm"]
+[gd_scene load_steps=7 format=3 uid="uid://ceny4pga54mbm"]
 
 [ext_resource type="PackedScene" uid="uid://bhpqwbnbvkb2g" path="res://scenes/player.tscn" id="1_gy1s4"]
 [ext_resource type="Texture2D" uid="uid://dvt4vaqos4xp" path="res://assets/tiles/ground.png" id="1_js4ev"]
-[ext_resource type="PackedScene" uid="uid://cyb7v268j5o3u" path="res://scenes/roombot.tscn" id="3_72ft2"]
+[ext_resource type="Script" path="res://scenes/playground_test.gd" id="2_mf5ai"]
 [ext_resource type="PackedScene" uid="uid://d27mxp1ff86u" path="res://scenes/human.tscn" id="4_thyid"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pcjm3"]
@@ -17,33 +17,15 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 7
 sources/1 = SubResource("TileSetAtlasSource_pcjm3")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_byno8"]
-normal = Vector2(0, 1)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_24h4o"]
-
 [node name="Playground" type="TileMap"]
+position = Vector2(8, -58)
 tile_set = SubResource("TileSet_wfwn5")
 format = 2
-layer_0/tile_data = PackedInt32Array(589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 458760, 1, 0, 327691, 1, 0, 655357, 1, 0, 720893, 1, 0, 655356, 1, 0, 720892, 1, 0, 655355, 1, 0, 720891, 1, 0, 786430, 1, 0, 786431, 1, 0, 720896, 1, 0, 720897, 1, 0, 786429, 1, 0, 393229, 1, 0, 524304, 1, 0, 589845, 1, 0, 589838, 1, 0, 524293, 1, 0, 655354, 1, 0, 655353, 1, 0, 655352, 1, 0, 655351, 1, 0, 655350, 1, 0, 655358, 1, 0, 655359, 1, 0, 589824, 1, 0, 655349, 1, 0, 589813, 1, 0, 1, 1, 0, 2, 1, 0)
+layer_0/tile_data = PackedInt32Array(589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655357, 1, 0, 720893, 1, 0, 655356, 1, 0, 720892, 1, 0, 655355, 1, 0, 720891, 1, 0, 786430, 1, 0, 786431, 1, 0, 720896, 1, 0, 720897, 1, 0, 786429, 1, 0, 524293, 1, 0, 655354, 1, 0, 655353, 1, 0, 655352, 1, 0, 655351, 1, 0, 655350, 1, 0, 655358, 1, 0, 655359, 1, 0, 589824, 1, 0, 655349, 1, 0, 589813, 1, 0, 589812, 1, 0, 589811, 1, 0, 589810, 1, 0, 589809, 1, 0, 589808, 1, 0, 589807, 1, 0, 589806, 1, 0, 524269, 1, 0, 524268, 1, 0, 524267, 1, 0, 524266, 1, 0, 524265, 1, 0, 524264, 1, 0, 524263, 1, 0, 524262, 1, 0, 589798, 1, 0, 589799, 1, 0)
+script = ExtResource("2_mf5ai")
 
 [node name="Player" parent="." instance=ExtResource("1_gy1s4")]
-position = Vector2(87, 118)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(112, 42)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_byno8")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(129, 176)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-shape = SubResource("WorldBoundaryShape2D_24h4o")
-
-[node name="Roombot" parent="." instance=ExtResource("3_72ft2")]
-position = Vector2(-115, 128)
+position = Vector2(-104, 124)
 
 [node name="human" parent="." instance=ExtResource("4_thyid")]
-position = Vector2(-50, 123)
+position = Vector2(22, 123)
