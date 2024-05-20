@@ -31,4 +31,4 @@ position = Vector2(312, 144)
 position = Vector2(112, 96)
 
 [node name="human" parent="." instance=ExtResource("6_bec5b")]
-position = Vector2(164, 140)
+position = Vector2(166, 138)

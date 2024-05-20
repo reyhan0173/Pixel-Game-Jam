@@ -25,7 +25,7 @@ layer_0/tile_data = PackedInt32Array(589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 5
 script = ExtResource("2_mf5ai")
 
 [node name="Player" parent="." instance=ExtResource("1_gy1s4")]
-position = Vector2(23, 128)
+position = Vector2(-104, 124)
 
 [node name="human" parent="." instance=ExtResource("4_thyid")]
-position = Vector2(-97, 119)
+position = Vector2(22, 123)
