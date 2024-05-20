@@ -44,4 +44,4 @@ func transition_to_level(level_index: int) -> void:
 
 
 func win() -> void:
-	print("YOU WON!")
+	pass

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2nqv5bokkoax"]
+[gd_scene load_steps=10 format=3 uid="uid://c2nqv5bokkoax"]
 
 [ext_resource type="Script" path="res://scripts/interactable/goal.gd" id="1_1pw3m"]
 [ext_resource type="Texture2D" uid="uid://dd6ebkvobrvqk" path="res://assets/tiles/tileset.png" id="2_1jh32"]
 [ext_resource type="PackedScene" uid="uid://bfpnbpwls6eyg" path="res://scenes/lock_indicator.tscn" id="3_ii7ox"]
+[ext_resource type="AudioStream" uid="uid://scgxqjaaf2sa" path="res://assets/sfx/Door_open.mp3" id="4_7vlh1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xau0f"]
 atlas = ExtResource("2_1jh32")
@@ -25,6 +26,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Rect2(176, 160, 64, 32)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OpenSFX:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_wun8h"]
 resource_name = "open"
@@ -39,6 +52,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Rect2(176, 128, 64, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OpenSFX:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mpvsy"]
@@ -92,6 +117,9 @@ libraries = {
 }
 
 [node name="Locks" type="Node" parent="."]
+
+[node name="OpenSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_7vlh1")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

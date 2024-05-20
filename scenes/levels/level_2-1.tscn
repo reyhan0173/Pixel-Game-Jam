@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://civeigxl788yt"]
+[gd_scene load_steps=8 format=3 uid="uid://civeigxl788yt"]
 
 [ext_resource type="TileSet" uid="uid://cxkagr67yyc7" path="res://scenes/levels/tileset.tres" id="1_148dv"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="2_42ohu"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b8hg0pp6dbuqf" path="res://scenes/lock.tscn" id="5_ovl3k"]
 [ext_resource type="PackedScene" uid="uid://cyb7v268j5o3u" path="res://scenes/roombot.tscn" id="6_lpg47"]
 [ext_resource type="PackedScene" uid="uid://ceotskjind3if" path="res://scenes/water_tank.tscn" id="7_hohmd"]
-[ext_resource type="PackedScene" uid="uid://d27mxp1ff86u" path="res://scenes/human.tscn" id="8_2hltc"]
 
 [node name="Level2" type="TileMap"]
 position = Vector2(0, -4)
@@ -37,9 +36,6 @@ position = Vector2(104, 184)
 
 [node name="WaterTank" parent="." instance=ExtResource("7_hohmd")]
 position = Vector2(72, 144)
-
-[node name="human" parent="." instance=ExtResource("8_2hltc")]
-position = Vector2(136, 144)
 
 [node name="WaterTank2" parent="." instance=ExtResource("7_hohmd")]
 position = Vector2(304, 64)

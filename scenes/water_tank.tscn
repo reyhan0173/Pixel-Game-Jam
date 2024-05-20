@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://ceotskjind3if"]
+[gd_scene load_steps=10 format=3 uid="uid://ceotskjind3if"]
 
 [ext_resource type="Script" path="res://scripts/interactable/water_tank.gd" id="2_n3cd4"]
 [ext_resource type="Texture2D" uid="uid://cj6pn0tax0yex" path="res://assets/water_tank/water_tank_frame.png" id="2_r2rb3"]
 [ext_resource type="Texture2D" uid="uid://bbrf8y3toqxbu" path="res://assets/water_tank/water1.png" id="2_ysyoq"]
 [ext_resource type="Texture2D" uid="uid://bey4ugh74b4as" path="res://assets/water_tank/water2.png" id="4_co3wp"]
+[ext_resource type="Texture2D" uid="uid://ypp3idid342m" path="res://assets/prompts/E.png" id="6_7nlj0"]
 [ext_resource type="Texture2D" uid="uid://d0sv0b5sysfvf" path="res://assets/water_tank/water3.png" id="6_qcov6"]
+[ext_resource type="Texture2D" uid="uid://brrtoinc8mjxs" path="res://assets/lights/light64.png" id="7_3b5jx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ibhyt"]
 size = Vector2(32, 32)
@@ -26,6 +28,7 @@ script = ExtResource("2_n3cd4")
 shape = SubResource("RectangleShape2D_ibhyt")
 
 [node name="Border" type="NinePatchRect" parent="."]
+z_index = 1
 clip_contents = true
 anchors_preset = 8
 anchor_left = 0.5
@@ -46,6 +49,7 @@ patch_margin_bottom = 2
 
 [node name="Water" type="NinePatchRect" parent="Border"]
 unique_name_in_owner = true
+z_index = -1
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -55,10 +59,17 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AnimatedTexture_08lqj")
 patch_margin_left = 2
-patch_margin_top = 3
+patch_margin_top = 4
 patch_margin_right = 2
 patch_margin_bottom = 2
 axis_stretch_horizontal = 1
+
+[node name="Prompt" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = ExtResource("6_7nlj0")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("7_3b5jx")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

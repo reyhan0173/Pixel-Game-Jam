@@ -40,11 +40,12 @@ func _on_body_entered(body: Node2D) -> void:
 	var body_name = body.name
 	if body is Enemy:
 		body.on_hit()
+		queue_free()
 	elif _released:
 		splash_sound.monitoring = true
 		print("sound queue given")
 		print(splash_sound.monitoring)
-		hide()
+		queue_free()
 		pass
 	# TODO: play splash animation before freeing. May want to lookup collision normal here.
 	#queue_free()

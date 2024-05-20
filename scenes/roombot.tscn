@@ -1,17 +1,177 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyb7v268j5o3u"]
+[gd_scene load_steps=18 format=3 uid="uid://cyb7v268j5o3u"]
 
 [ext_resource type="Script" path="res://scripts/enemies/roombot/Roombot.gd" id="1_a1ugr"]
 [ext_resource type="Texture2D" uid="uid://cu182yr1skqp8" path="res://assets/enemies/roombot/roombot.png" id="2_v23d4"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_wnkjl"]
 [ext_resource type="Script" path="res://scripts/enemies/roombot/patrol_bot.gd" id="4_dgrvh"]
 [ext_resource type="Script" path="res://scripts/enemies/roombot/alert.gd" id="5_ktmno"]
+[ext_resource type="Script" path="res://Dead.gd" id="6_qtcsw"]
 [ext_resource type="Texture2D" uid="uid://e0sycawpjw56" path="res://assets/lights/light32.png" id="6_wtiho"]
+[ext_resource type="Texture2D" uid="uid://woxrbjda8i30" path="res://assets/enemies/roombot/roombot_moving.png" id="7_phukq"]
+[ext_resource type="AudioStream" uid="uid://sqq6005o13ue" path="res://assets/sfx/Robot_confuse.mp3" id="9_whn7h"]
+[ext_resource type="AudioStream" uid="uid://ckygfhl7lw657" path="res://assets/sfx/Robot_surprise.mp3" id="10_sl0ky"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exg1j"]
 size = Vector2(12, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmr6f"]
 size = Vector2(14, 5)
+
+[sub_resource type="Animation" id="Animation_6u7s2"]
+resource_name = "patrol"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Temproombot:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_v23d4")]
+}
+
+[sub_resource type="Animation" id="Animation_7y2c7"]
+resource_name = "alert"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Temproombot:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_phukq")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AlertSFX:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_gyfnx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Temproombot:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_v23d4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeadSFX:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AlertSFX:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_4djm3"]
+resource_name = "dead"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Temproombot:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_v23d4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeadSFX:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8up4b"]
+_data = {
+"RESET": SubResource("Animation_gyfnx"),
+"alert": SubResource("Animation_7y2c7"),
+"dead": SubResource("Animation_4djm3"),
+"patrol": SubResource("Animation_6u7s2")
+}
 
 [node name="Roombot" type="CharacterBody2D"]
 z_index = 1
@@ -40,10 +200,16 @@ starting_state = NodePath("patrol")
 [node name="patrol" type="Node" parent="state_machine" node_paths=PackedStringArray("alert_state")]
 script = ExtResource("4_dgrvh")
 alert_state = NodePath("../alert")
+animation_name = "patrol"
 
 [node name="alert" type="Node" parent="state_machine" node_paths=PackedStringArray("patrol_state")]
 script = ExtResource("5_ktmno")
 patrol_state = NodePath("../patrol")
+animation_name = "alert"
+
+[node name="dead" type="Node" parent="state_machine"]
+script = ExtResource("6_qtcsw")
+animation_name = "dead"
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(0, 6)
@@ -59,5 +225,16 @@ position = Vector2(2, 6)
 color = Color(1, 1, 0, 1)
 energy = 0.5
 texture = ExtResource("6_wtiho")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8up4b")
+}
+
+[node name="DeadSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_whn7h")
+
+[node name="AlertSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_sl0ky")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_body_entered"]

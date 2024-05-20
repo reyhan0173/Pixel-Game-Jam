@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bhpqwbnbvkb2g"]
+[gd_scene load_steps=20 format=3 uid="uid://bhpqwbnbvkb2g"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_hx8jc"]
 [ext_resource type="Resource" uid="uid://ytowbcl6whle" path="res://player_config.tres" id="2_0vbg1"]
 [ext_resource type="Texture2D" uid="uid://brrtoinc8mjxs" path="res://assets/lights/light64.png" id="3_48brg"]
 [ext_resource type="Script" path="res://scripts/states/player/still_ground_state.gd" id="3_comfm"]
 [ext_resource type="Script" path="res://scripts/states/player/move_ground_state.gd" id="4_atfho"]
-[ext_resource type="Texture2D" uid="uid://ce7jpqb4kjimg" path="res://assets/player/MC.png" id="4_dl1iw"]
 [ext_resource type="Script" path="res://scripts/states/player/still_air_state.gd" id="5_g32xb"]
 [ext_resource type="Script" path="res://scripts/states/player/move_air_state.gd" id="6_53mr4"]
 [ext_resource type="Script" path="res://scripts/water_meter.gd" id="8_s04pl"]
@@ -13,9 +12,69 @@
 [ext_resource type="Texture2D" uid="uid://i0c65q0cem0g" path="res://assets/water_meter/under.png" id="10_t74dl"]
 [ext_resource type="Texture2D" uid="uid://cmtyy25k0d72q" path="res://assets/water_meter/over.png" id="10_yqwby"]
 [ext_resource type="Texture2D" uid="uid://bexq2oakagl72" path="res://assets/water_meter/progress.png" id="12_mbq61"]
+[ext_resource type="Texture2D" uid="uid://bkecyi53mknll" path="res://assets/player/MC_sheet.png" id="14_ywbh8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dysfe"]
 size = Vector2(6, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovuig"]
+atlas = ExtResource("14_ywbh8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="Animation" id="Animation_b33lp"]
+resource_name = "still"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_1sss1"]
+resource_name = "move"
+length = 0.416675
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 16, 16), Rect2(16, 0, 16, 16), Rect2(32, 0, 16, 16), Rect2(48, 0, 16, 16), Rect2(64, 0, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_3axqx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eu5ow"]
+_data = {
+"RESET": SubResource("Animation_3axqx"),
+"move": SubResource("Animation_1sss1"),
+"still": SubResource("Animation_b33lp")
+}
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
@@ -32,7 +91,7 @@ energy = 0.5
 texture = ExtResource("3_48brg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("4_dl1iw")
+texture = SubResource("AtlasTexture_ovuig")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -67,5 +126,10 @@ max_value = 8.0
 texture_under = ExtResource("10_t74dl")
 texture_over = ExtResource("10_yqwby")
 texture_progress = ExtResource("12_mbq61")
-texture_progress_offset = Vector2(16, 7)
+texture_progress_offset = Vector2(16, 0)
 script = ExtResource("8_s04pl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eu5ow")
+}
