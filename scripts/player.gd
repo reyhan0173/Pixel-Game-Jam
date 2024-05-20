@@ -58,6 +58,10 @@ func transition_to(state: State.Player) -> void:
 		current_state.set_process_input(false)
 	current_state = states[state]
 	current_state.on_transition()
+	if current_state is MoveGroundState:
+		$AnimationPlayer.play("move")
+	else:
+		$AnimationPlayer.play("still")
 
 
 func set_facing_right(value: bool) -> void:

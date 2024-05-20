@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcf0sb45ggqef"]
+[gd_scene load_steps=3 format=3 uid="uid://dcf0sb45ggqef"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_d8q8r"]
+[ext_resource type="AudioStream" uid="uid://c61vbks2grovu" path="res://assets/sfx/Invasion.mp3" id="2_wuron"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_d8q8r")
@@ -14,3 +15,7 @@ offset_bottom = 864.0
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_wuron")
+autoplay = true

@@ -20,7 +20,8 @@ func _process(delta: float) -> void:
 
 ## Called when hit by a water ball.
 func on_hit() -> void:
-	pass
+	if has_node("state_machine/dead"):
+		state_machine.change_state($state_machine/dead)
 
 
 func _on_body_entered(body: Node2D) -> void:

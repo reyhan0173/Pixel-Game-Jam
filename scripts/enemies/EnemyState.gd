@@ -10,6 +10,8 @@ var parent: Enemy
 
 
 func enter() -> void:
+	if parent.has_node("AnimationPlayer"):
+		parent.get_node("AnimationPlayer").play(animation_name)
 	#parent.animations.play(animation_name)
 	pass
 

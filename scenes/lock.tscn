@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8hg0pp6dbuqf"]
+[gd_scene load_steps=10 format=3 uid="uid://b8hg0pp6dbuqf"]
 
 [ext_resource type="Script" path="res://scripts/lock.gd" id="1_lipgw"]
 [ext_resource type="Texture2D" uid="uid://dd6ebkvobrvqk" path="res://assets/tiles/tileset.png" id="2_mys0w"]
 [ext_resource type="Texture2D" uid="uid://e0sycawpjw56" path="res://assets/lights/light32.png" id="3_2bleg"]
+[ext_resource type="AudioStream" uid="uid://d0arrvkv4206o" path="res://assets/sfx/roomba_or_lock_breaking.mp3" id="4_ph6p7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_comj4"]
 size = Vector2(16, 32)
@@ -50,6 +51,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Rect2(144, 144, 16, 32)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DestroySFX:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_kwuwm"]
 resource_name = "unlock"
@@ -89,6 +102,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Rect2(128, 144, 16, 32)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DestroySFX:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nvx20"]
 resource_local_to_scene = true
@@ -117,3 +142,7 @@ texture = ExtResource("3_2bleg")
 libraries = {
 "": SubResource("AnimationLibrary_nvx20")
 }
+
+[node name="DestroySFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ph6p7")
+volume_db = -5.0

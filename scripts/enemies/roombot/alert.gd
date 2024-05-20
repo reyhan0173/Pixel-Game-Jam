@@ -7,7 +7,7 @@ var direction: int
 
 
 func enter() -> void:
-	#parent.animations.play(animation_name)
+	super.enter()
 	# dont have to set character velocity
 	parent.velocity = Vector2(speed * direction, 0)
 
