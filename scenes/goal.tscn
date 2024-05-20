@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://scgxqjaaf2sa" path="res://assets/sfx/Door_open.mp3" id="4_7vlh1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xau0f"]
+resource_local_to_scene = true
 atlas = ExtResource("2_1jh32")
 region = Rect2(176, 160, 64, 32)
 
