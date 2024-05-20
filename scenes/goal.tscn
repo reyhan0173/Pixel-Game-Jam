@@ -1,27 +1,29 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2nqv5bokkoax"]
+[gd_scene load_steps=9 format=3 uid="uid://c2nqv5bokkoax"]
 
 [ext_resource type="Script" path="res://scripts/interactable/goal.gd" id="1_1pw3m"]
-[ext_resource type="Texture2D" uid="uid://bf42c6ttbfr7e" path="res://assets/goal/goal_1.png" id="2_g1vjx"]
+[ext_resource type="Texture2D" uid="uid://dd6ebkvobrvqk" path="res://assets/tiles/tileset.png" id="2_1jh32"]
 [ext_resource type="PackedScene" uid="uid://bfpnbpwls6eyg" path="res://scenes/lock_indicator.tscn" id="3_ii7ox"]
-[ext_resource type="Texture2D" uid="uid://b60cx0g1mb4mc" path="res://assets/goal/goal_2.png" id="4_231jc"]
-[ext_resource type="Texture2D" uid="uid://bgd0sx3irt2d3" path="res://assets/goal/goal_3.png" id="5_eqing"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xau0f"]
+atlas = ExtResource("2_1jh32")
+region = Rect2(176, 160, 64, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqn34"]
-size = Vector2(32, 48)
+size = Vector2(32, 32)
 
 [sub_resource type="Animation" id="Animation_peyp2"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("Sprite2D:texture:region")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_g1vjx")]
+"update": 0,
+"values": [Rect2(176, 160, 64, 32)]
 }
 
 [sub_resource type="Animation" id="Animation_wun8h"]
@@ -29,14 +31,14 @@ resource_name = "open"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("Sprite2D:texture:region")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("4_231jc"), ExtResource("5_eqing")]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(176, 128, 64, 32)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mpvsy"]
@@ -50,24 +52,27 @@ collision_layer = 8
 script = ExtResource("1_1pw3m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_g1vjx")
+texture = SubResource("AtlasTexture_xau0f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_xqn34")
 
-[node name="LockIndicatorContainer" type="HBoxContainer" parent="."]
+[node name="LockIndicatorContainer" type="GridContainer" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -16.0
-offset_top = -32.0
+offset_top = -16.0
 offset_right = 16.0
-offset_bottom = -24.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 2
 
 [node name="LockIndicator" parent="LockIndicatorContainer" instance=ExtResource("3_ii7ox")]
 layout_mode = 2
