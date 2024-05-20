@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4oiphhos0t0p"]
+
+[ext_resource type="Texture2D" uid="uid://ypp3idid342m" path="res://assets/prompts/E.png" id="1_aroh2"]
+
+[node name="Prompt" type="Sprite2D"]
+visible = false
+position = Vector2(0, -24)
+texture = ExtResource("1_aroh2")

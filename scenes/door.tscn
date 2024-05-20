@@ -1,18 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://doot84tx8m11k"]
+[gd_scene load_steps=7 format=3 uid="uid://doot84tx8m11k"]
 
 [ext_resource type="Script" path="res://scripts/interactable/door.gd" id="1_3w72b"]
+[ext_resource type="Texture2D" uid="uid://dd6ebkvobrvqk" path="res://assets/tiles/tileset.png" id="2_isyje"]
+[ext_resource type="PackedScene" uid="uid://c4oiphhos0t0p" path="res://scenes/prompt.tscn" id="2_naccs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6adqo"]
+atlas = ExtResource("2_isyje")
+region = Rect2(80, 112, 16, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1men"]
 size = Vector2(16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6r6s"]
+atlas = ExtResource("2_isyje")
+region = Rect2(80, 64, 16, 32)
 
 [node name="Door" type="Area2D"]
 collision_layer = 4
 script = ExtResource("1_3w72b")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_6adqo")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_n1men")
 
 [node name="Teleport" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Teleport"]
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_w6r6s")
+
+[node name="Prompt" parent="." instance=ExtResource("2_naccs")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
