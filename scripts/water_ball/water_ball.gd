@@ -26,11 +26,10 @@ func _physics_process(delta: float) -> void:
 		# Subject the water ball to gravity when we release it.
 		velocity.y += _gravity * delta
 	position += velocity
-	
-	var humans = splash_sound.get_overlapping_bodies()
-	if humans.size() > 0:
-		var human = humans[0]
-		_on_area_2d_body_entered(human)
+	if splash_sound.monitoring:
+		var humans = splash_sound.get_overlapping_bodies()
+		for human in humans:
+			_on_area_2d_body_entered(human)
 
 
 func release() -> void:
@@ -41,10 +40,11 @@ func _on_body_entered(body: Node2D) -> void:
 	var body_name = body.name
 	if body is Enemy:
 		body.on_hit()
-	else:
+	elif _released:
 		splash_sound.monitoring = true
 		print("sound queue given")
 		print(splash_sound.monitoring)
+		hide()
 		pass
 	# TODO: play splash animation before freeing. May want to lookup collision normal here.
 	#queue_free()
